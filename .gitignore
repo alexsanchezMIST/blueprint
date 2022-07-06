@@ -1,0 +1,16 @@
+# build output
+dist
+
+# dependencies
+node_modules
+.stylelintrc.json
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
+.DS_Store
+
+# others
+package-lock.json

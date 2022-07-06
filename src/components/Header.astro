@@ -1,0 +1,112 @@
+---
+import Container from "./Container.astro";
+import Button from "./Button.astro";
+---
+
+<header id="header" class="nav">
+  <Container>
+    <div class="nav--wrapper">
+      <img src="" alt="" class="nav--logo" />
+      <div class="nav--right">
+        <ul class="nav--menu">
+          <li class="nav--link">
+            <a href="/">Home</a>
+          </li>
+          <li class="nav--link">
+            <a href="/">About</a>
+          </li>
+          <li class="nav--link">
+            <a href="/">Blog</a>
+          </li>
+          <li class="nav--link">
+            <a href="/">Services</a>
+          </li>
+          <li class="nav--link">
+            <a href="/">Contact</a>
+          </li>
+          <li class="nav--link cta">
+            <a href="/">Get started</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </Container>
+</header>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+  .nav {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: grid;
+    place-items: center;
+    width: 100vw;
+    height: auto;
+    padding-block: map-get($spacing, "400");
+    background-color: rgba($white, 0);
+    border-bottom: 1px solid rgba($black, 0);
+    transition: all 0.3s ease-in-out;
+
+    &.is-scrolled {
+      background-color: $white;
+      border-bottom: 1px solid map-get($neutrals, "100");
+      box-shadow: 0 10px 15px -3px rgba($black, 0.1),
+        0 4px 6px -4px rgba($black, 0.1);
+    }
+  }
+  .nav--wrapper,
+  .nav--menu {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .nav--wrapper {
+    justify-content: space-between;
+  }
+  .nav--menu {
+    justify-content: flex-end;
+    gap: map-get($spacing, "600");
+  }
+  .nav--link {
+    font-size: map-get($font-size, "300");
+    font-weight: 500;
+    color: map-get($neutrals, "400");
+    transition: color 0.3s ease-in-out;
+
+    &.cta {
+      padding-block: map-get($spacing, "100");
+      padding-inline: map-get($spacing, "200");
+      background-color: rgba($white, 1);
+      font-weight: 500;
+      color: map-get($secondary, "500");
+      border: 1px solid map-get($secondary, "500");
+      border-radius: 0.125rem;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background-color: map-get($secondary, "500");
+        color: $white;
+      }
+    }
+
+    &:hover {
+      color: map-get($secondary, "500");
+    }
+  }
+</style>
+
+<script>
+  window.onscroll = function () {
+    "use strict";
+    const header = document.querySelector("#header");
+
+    if (window.scrollY > 1) {
+      header.classList.add("is-scrolled");
+    } else {
+      header.classList.remove("is-scrolled");
+    }
+  };
+</script>

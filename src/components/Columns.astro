@@ -1,0 +1,26 @@
+---
+---
+
+<div class="grid-cols-2">
+  <div class="col-span-1">
+    <slot name="first"></slot>
+  </div>
+  <div class="col-span-1">
+    <slot name="second"></slot>
+  </div>
+</div>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+  .grid-cols-2 {
+    display: grid;
+    grid-template-rows: repeat(2, minmax(0, min-content));
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-gap: map-get($spacing, "400");
+
+    @media screen and (min-width: map-get($breakpoints, "lg")) {
+      grid-template-rows: repeat(1, minmax(0, min-content));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

@@ -1,0 +1,148 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import Container from "../components/Container.astro";
+import Columns from "../components/Columns.astro";
+import ButtonGroup from "../components/ButtonGroup.astro";
+import Button from "../components/Button.astro";
+import LogoCarousel from "../components/LogoCarousel.astro";
+import Article from "../components/Article.astro";
+import CardWrapper from "../components/CardWrapper.astro";
+import TestimonialWrapper from "../components/TestimonialWrapper.astro";
+import CTA from "../components/CTA.astro";
+---
+
+<Layout>
+  <Section>
+    <Container>
+      <Columns>
+        <div slot="first">
+          <p class="eyebrow">FREE Masterclass for engineers and tech workers</p>
+          <h1>
+            The <span class="span">4 Keys</span> to Intentional Engineering Career
+            Transitions
+          </h1>
+          <ButtonGroup>
+            <Button label="Watch now" />
+            <Button isOutlined="true" label="Learn more" />
+          </ButtonGroup>
+        </div>
+        <div slot="second"></div>
+        <Columns />
+      </Columns>
+    </Container>
+  </Section>
+  <LogoCarousel />
+  <Section>
+    <Container>
+      <Article>
+        <h2>Your Career Engineered</h2>
+        <p>
+          Each of us has unlimited potential. Too often we place limits on
+          ourselves, which can then limit those around us.
+        </p>
+        <p>
+          To unlock your potential, you can look to the fundamental laws of the
+          universe that can be applied to you.
+        </p>
+        <p>
+          <strong
+            >You can be more than an engineer, scientist, or whatever your
+            chosen profession is.
+          </strong>
+        </p>
+        <p>
+          You can be a human that is full of life, bringing opportunities,
+          innovations, and lasting impact to those around you. Each day should
+          be seen as an opportunity to do great things and touch the lives of
+          others. Don't let a day pass you by wihtout doing something you are
+          proud of, learning something new, or strengthening a relationship.
+        </p>
+        <p>Life can be scary, uncertain, and stressful.</p>
+        <p>
+          But life can also be fun, beautiful, and full of joy! Much of what we
+          experience in life is due to our choices, and I hope to inspire you to
+          make choices that will create a life you are proud of.
+        </p>
+        <p>
+          Each of us needs help and assistance on the road of life. I want to do
+          my part to help you grow as an individual, leader, husband, wife,
+          sibling, parent, friend, or whatever other roles you fill in life.
+          Together we'll create goals and systems to achieve them, increase
+          personal growth, and create career fulfillment.
+        </p>
+        <p>
+          Some of the things you are asked to do might seem crazy or out of your
+          comfort zone. Some ideas might seem like common sense. You'll only get
+          results if you take action.
+        </p>
+        <p>
+          You are more than an engineer—let's work together to design an amazing
+          career and life for you!
+        </p>
+      </Article>
+    </Container>
+  </Section>
+  <Section>
+    <Container>
+      <CardWrapper />
+    </Container>
+  </Section>
+  <Section>
+    <Container>
+      <Columns>
+        <div slot="first">
+          <h2>
+            <span class="span">About</span> Jeff Perry
+          </h2>
+          <div class="about--subheading">
+            <p>
+              Hi, I'm Jeff Perry, a leadership and career coach for engineers.
+            </p>
+            <p>
+              I LOVE seeing my clients upgrade their mindsets, lives, and
+              careers as we take a holistic approach to personal development.
+            </p>
+            <p>
+              You should be <strong>transforming</strong> into a better person in
+              all facets of life.
+            </p>
+            <p>Sound interesting? Click the link below to learn more.</p>
+          </div>
+          <Button isOutlined="true" label="Learn more" />
+        </div>
+        <div slot="second"></div>
+        <Columns />
+      </Columns>
+    </Container>
+  </Section>
+  <Section>
+    <Container>
+      <TestimonialWrapper />
+    </Container>
+  </Section>
+  <CTA />
+
+  <style lang="scss">
+    @import "../styles/variables.scss";
+    :global(.eyebrow) {
+      margin-bottom: map-get($spacing, "400");
+      font-weight: 500;
+    }
+    h1 {
+      line-height: 1.125;
+      margin-bottom: map-get($spacing, "400");
+    }
+    :global(.span) {
+      padding: 0.25rem 1rem;
+      background-color: map-get($primary, "500");
+      color: white;
+    }
+    h2 {
+      margin-bottom: map-get($spacing, "400");
+    }
+    .about--subheading {
+      margin-bottom: map-get($spacing, "600");
+    }
+  </style>
+</Layout>

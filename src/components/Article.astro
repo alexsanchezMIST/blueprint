@@ -1,0 +1,33 @@
+---
+export interface Props {
+  body?: string;
+}
+
+const { body } = Astro.props as Props;
+---
+
+<article class="prose">
+  <slot></slot>
+  {body}
+</article>
+
+<style is:global lang="scss">
+  @import "../styles/variables.scss";
+  .prose {
+    width: 100%;
+    max-width: 75ch;
+    margin-inline: auto;
+
+    h2 {
+      margin-bottom: map-get($spacing, "600");
+    }
+
+    p:not(:first-of-type) {
+      margin-top: map-get($spacing, "400");
+    }
+
+    p:not(:last-of-type) {
+      margin-bottom: map-get($spacing, "400");
+    }
+  }
+</style>

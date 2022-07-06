@@ -1,0 +1,36 @@
+---
+import Testimonial from "./Testimonial.astro";
+---
+
+<div class="testimonial--wrapper">
+  <Testimonial
+    name="John Doe"
+    twitter="@john_doe"
+    body="La croix paleo sartorial shaman, artisan direct trade tumblr wayfarers. Edison bulb man bun succulents, man braid sustainable pop-up post-ironic letterpress synth live-edge. 3 wolf moon brooklyn waistcoat thundercats authentic."
+  />
+  <Testimonial
+    name="John Doe"
+    twitter="@john_doe"
+    body="La croix paleo sartorial shaman, artisan direct trade tumblr wayfarers. Edison bulb man bun succulents, man braid sustainable pop-up post-ironic letterpress synth live-edge. 3 wolf moon brooklyn waistcoat thundercats authentic."
+  />
+  <Testimonial
+    name="John Doe"
+    twitter="@john_doe"
+    body="La croix paleo sartorial shaman, artisan direct trade tumblr wayfarers. Edison bulb man bun succulents, man braid sustainable pop-up post-ironic letterpress synth live-edge. 3 wolf moon brooklyn waistcoat thundercats authentic."
+  />
+</div>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+  .testimonial--wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: map-get($spacing, "400");
+
+    @media screen and (min-width: map-get($breakpoints, "lg")) {
+      flex-direction: row;
+    }
+  }
+</style>

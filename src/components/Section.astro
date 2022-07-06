@@ -1,0 +1,23 @@
+---
+export interface Props {
+  isSmall?: string;
+}
+
+const { isSmall } = Astro.props as Props;
+---
+
+<section class={isSmall === "true" ? "is-small" : ""}>
+  <slot></slot>
+</section>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+  section {
+    position: relative;
+    padding-block: map-get($spacing-pairs, "from-400-to-900");
+  }
+
+  .is-small {
+    padding-block: map-get($spacing, "600");
+  }
+</style>

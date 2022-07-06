@@ -1,0 +1,16 @@
+// ********************
+// HORIZONTAL SCROLL
+// ********************
+
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-200%);
+  }
+}
+
+.scroll-left {
+  animation: scrollLeft 120s infinite;
+}

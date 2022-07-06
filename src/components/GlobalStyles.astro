@@ -1,0 +1,71 @@
+---
+---
+
+<style is:global lang="scss">
+  @import "../styles/preflight.scss";
+  @import "../styles/font-face.scss";
+  @import "../styles/variables.scss";
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Satoshi", sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: calc($line-height / 1.05);
+    color: map-get($neutrals, "900");
+  }
+
+  h1 {
+    font-size: map-get($font-size, "800");
+    font-weight: 900;
+    letter-spacing: map-get($letter-spacing, "tighter");
+  }
+
+  h2 {
+    font-size: map-get($font-size, "700");
+    font-weight: 800;
+    letter-spacing: map-get($letter-spacing, "tight");
+  }
+
+  h3 {
+    font-size: map-get($font-size, "600");
+    font-weight: 700;
+  }
+
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+  }
+
+  h4 {
+    font-size: map-get($font-size, "500");
+  }
+
+  h5,
+  h6 {
+    font-size: map-get($font-size, "400");
+  }
+
+  p {
+    font-size: map-get($font-size, "400");
+    line-height: $line-height;
+    font-weight: 400;
+    color: map-get($neutrals, "400");
+  }
+
+  strong {
+    font-weight: 600;
+    color: map-get($neutrals, "700");
+  }
+</style>

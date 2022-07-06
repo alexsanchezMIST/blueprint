@@ -1,0 +1,42 @@
+---
+import Card from "./Card.astro";
+---
+
+<div class="card-wrapper">
+  <Card
+    href="/"
+    title="Career Development Coaching"
+    body="Looking to upgrade or adjust your career? Whatever your goals or career aspirations, we can accelerate your path to get there!"
+  />
+  <Card
+    href="/"
+    title="Leadership Coaching"
+    body="Leadership takes more than just technical expertise. There is a whole new set of skills you need to leanr to be a great leader! Through intentional effort, you can become the leader your team needs to be!"
+  />
+  <Card
+    href="/"
+    title="Speaking"
+    body="Bringing together a group or team to participate in a workshop or event can be a unifying experience. I'm happy to deliver similar material to previous sessions I have given, or put a custom presentation or workshop together for your needs."
+  />
+  <Card
+    href="/"
+    title="Business Consulting"
+    body="As businesses develop and grow, it's critical to bring in expertise so they don't learn lessons the hard way. We can design a custom consulting approach to help your business achieve your most ambitious goals!"
+  />
+</div>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+
+  .card-wrapper {
+    display: grid;
+    grid-template-rows: repeat(auto, minmax(0, min-content));
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: map-get($spacing, "600");
+
+    @media screen and (min-width: map-get($breakpoints, "lg")) {
+      grid-template-rows: repeat(1, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+</style>

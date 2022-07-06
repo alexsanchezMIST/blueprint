@@ -1,0 +1,82 @@
+---
+import Section from "./Section.astro";
+import Container from "./Container.astro";
+import Button from "./Button.astro";
+---
+
+<Section>
+  <Container>
+    <div class="cta">
+      <div class="cta--inner">
+        <div class="cta--left">
+          <h2 class="cta--heading">
+            Get more <span class="cta--span">clarity</span> now
+          </h2>
+          <p class="cta--subheading">
+            The Career Clarity Checklist will help you crush fear, get immediate
+            clarity, and take intentional action on goals you believe in. Start
+            today!
+          </p>
+          <Button label="Get clarity now" />
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+  .cta {
+    position: relative;
+    padding: map-get($spacing, "600");
+    background-image: linear-gradient(
+      to bottom,
+      map-get($primary, "400"),
+      map-get($primary, "500")
+    );
+    box-shadow: 0 25px 50px -12px rgba($black, 0.25);
+
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: 25;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("/assets/graph-paper-white.svg");
+      background-repeat: repeat;
+      background-position: center center;
+      background-size: 5rem;
+      opacity: 0.25;
+      background-blend-mode: overlay;
+    }
+  }
+  .cta--inner {
+    position: relative;
+    z-index: 100;
+    padding-block: map-get($spacing, "800");
+    padding-inline: map-get($spacing, "600");
+    border: 1px solid $white;
+  }
+  .cta--left {
+    @media screen and (min-width: map-get($breakpoints, "lg")) {
+      width: 50%;
+    }
+  }
+  .cta--heading {
+    color: $white;
+    margin-bottom: map-get($spacing, "400");
+  }
+  .cta--span {
+    padding: 0.25rem 0.75rem;
+    background-color: $white;
+    color: map-get($primary, "400");
+  }
+  .cta--subheading {
+    color: map-get($neutrals, "50");
+    margin-bottom: map-get($spacing, "600");
+  }
+</style>

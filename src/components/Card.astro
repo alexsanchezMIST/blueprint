@@ -1,0 +1,54 @@
+---
+export interface Props {
+  title: string;
+  body: string;
+  href: string;
+}
+const { href, title, body } = Astro.props as Props;
+---
+
+<li class="card--wrapper">
+  <a href={href} class="card">
+    <h5 class="card--heading">
+      {title}
+    </h5>
+    <p class="card--content">
+      {body}
+    </p>
+    <p class="card--link">Learn more</p>
+  </a>
+</li>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+
+  .card--wrapper {
+    padding-block: map-get($spacing, "600");
+    padding-inline: map-get($spacing, "500");
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: $white;
+      border: 1px solid map-get($neutrals, "50");
+      box-shadow: 0 10px 15px -3px rgba($black, 0.1),
+        0 4px 6px -4px rgba($black, 0.1);
+    }
+  }
+
+  .card--heading {
+    margin-bottom: map-get($spacing, "400");
+  }
+
+  .card--content {
+    margin-bottom: map-get($spacing, "600");
+    font-size: map-get($font-size, "300");
+  }
+
+  .card--link {
+    font-weight: 500;
+    color: map-get($secondary, "500");
+  }
+</style>

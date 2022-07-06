@@ -1,0 +1,42 @@
+---
+export interface Props {
+  name: string;
+  twitter?: string;
+  body: string;
+}
+
+const { name, twitter, body } = Astro.props as Props;
+---
+
+<div class="testimonial">
+  <div class="testimonial--top">
+    <img src="" alt="" class="testimonial--avatar" />
+    <div class="testimonial--info">
+      <h6 class="testimonial--name">{name}</h6>
+      <p class="testimonial--twitter">{twitter}</p>
+    </div>
+  </div>
+  <div class="testimonial--bottom">
+    {body}
+  </div>
+</div>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+  .testimonial {
+    padding: map-get($spacing, "600");
+    background-color: $white;
+    border: 1px solid map-get($neutrals, "50");
+    border-radius: 0.5rem;
+  }
+  .testimonial--top {
+    margin-bottom: map-get($spacing, "400");
+  }
+  .testimonial--twitter {
+    font-size: map-get($font-size, "300");
+    color: map-get($neutrals, "300");
+  }
+  .testimonial--bottom {
+    color: map-get($neutrals, "300");
+  }
+</style>

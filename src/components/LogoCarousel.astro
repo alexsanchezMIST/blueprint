@@ -1,0 +1,62 @@
+---
+import Section from "./Section.astro";
+import Container from "./Container.astro";
+---
+
+<Section isSmall="true">
+  <div class="rule--top"></div>
+  <Container>
+    <h5>Clients are building their careers at top companies like:</h5>
+  </Container>
+  <div class="carousel">
+    <div class="logo-wrapper scroll-left">
+      <img src="/assets/blue-origin.svg" alt="" />
+      <img src="/assets/blue-origin.svg" alt="" />
+      <img src="/assets/blue-origin.svg" alt="" />
+      <img src="/assets/blue-origin.svg" alt="" />
+      <img src="/assets/blue-origin.svg" alt="" />
+      <img src="/assets/blue-origin.svg" alt="" />
+    </div>
+  </div>
+  <div class="rule--bottom"></div>
+</Section>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+  @import "../styles/keyframes.scss";
+
+  .rule--top,
+  .rule--bottom {
+    position: absolute;
+    width: 100vw;
+    height: 1px;
+    background-color: map-get($primary, "400");
+  }
+
+  .rule--top {
+    top: -1px;
+  }
+
+  .rule--bottom {
+    bottom: -1px;
+  }
+
+  h5 {
+    margin-bottom: map-get($spacing, "500");
+    text-align: center;
+  }
+  .carousel {
+    width: 100vw;
+    height: auto;
+  }
+  .logo-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  img {
+    margin-inline: map-get($spacing, "400");
+  }
+</style>
