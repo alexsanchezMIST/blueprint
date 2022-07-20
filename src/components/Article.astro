@@ -29,5 +29,31 @@ const { body } = Astro.props as Props;
     p:not(:last-of-type) {
       margin-bottom: map-get($spacing, "400");
     }
+
+    li {
+      position: relative;
+      padding-left: map-get($spacing, "600");
+      font-size: map-get($font-size, "400");
+      line-height: $line-height;
+      font-weight: 400;
+      color: map-get($neutrals, "400");
+
+      &:not(:last-of-type) {
+        margin-bottom: map-get($spacing, "400");
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1.5rem;
+        height: 1.5rem;
+        background-image: url("/assets/icon-check.svg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+      }
+    }
   }
 </style>

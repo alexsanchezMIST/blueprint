@@ -5,6 +5,7 @@ import Container from "../components/Container.astro";
 import Columns from "../components/Columns.astro";
 import ButtonGroup from "../components/ButtonGroup.astro";
 import Button from "../components/Button.astro";
+import { Icon } from "astro-icon";
 import LogoCarousel from "../components/LogoCarousel.astro";
 import Article from "../components/Article.astro";
 import CardWrapper from "../components/CardWrapper.astro";
@@ -18,7 +19,7 @@ import CTA from "../components/CTA.astro";
       <Columns>
         <div slot="first">
           <p class="eyebrow">FREE Masterclass for engineers and tech workers</p>
-          <h1>
+          <h1 class="hero--heading">
             The <span class="span">4 Keys</span> to Intentional Engineering Career
             Transitions
           </h1>
@@ -126,12 +127,12 @@ import CTA from "../components/CTA.astro";
   <style lang="scss">
     @import "../styles/variables.scss";
     :global(.eyebrow) {
-      margin-bottom: map-get($spacing, "400");
+      margin-bottom: map-get($spacing, "600");
       font-weight: 500;
     }
-    h1 {
+    .hero--heading {
       line-height: 1.125;
-      margin-bottom: map-get($spacing, "400");
+      margin-bottom: map-get($spacing, "600");
     }
     :global(.span) {
       padding: 0.25rem 1rem;

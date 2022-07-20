@@ -17,7 +17,7 @@ import Header from "../components/Header.astro";
 
   <body class="body">
     <Header />
-    <main class="main">
+    <main id="main--content" class="main">
       <slot></slot>
     </main>
     <style lang="scss">
@@ -27,7 +27,7 @@ import Header from "../components/Header.astro";
         background-image: linear-gradient(
           to bottom,
           $white,
-          map-get($primary, "50") 90%
+          map-get($primary, "50")
         );
 
         &::before {
@@ -67,6 +67,7 @@ import Header from "../components/Header.astro";
       main {
         position: relative;
         z-index: 100;
+        margin-top: 5rem;
       }
     </style>
   </body>

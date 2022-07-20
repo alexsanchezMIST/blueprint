@@ -48,7 +48,8 @@ const { href, title, body } = Astro.props as Props;
   }
 
   .card--link {
-    font-weight: 500;
+    font-size: map-get($font-size, "300");
+    font-weight: 600;
     color: map-get($secondary, "500");
   }
 </style>

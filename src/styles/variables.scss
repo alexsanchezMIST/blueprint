@@ -73,7 +73,16 @@ $spacing: (
 );
 
 $spacing-pairs: (
+  "from-800-to-900": clamp(4rem, calc(1.5rem + 6.25vw), 7.5rem),
+  "from-700-to-800": clamp(3rem, calc(1.57rem + 3.57vw), 5rem),
+  "from-600-to-700": clamp(2rem, calc(0.75rem + 3.13vw), 3.75rem),
+  "from-500-to-600": clamp(1.5rem, calc(0.79rem + 1.79vw), 2.5rem),
+  "from-400-to-500": clamp(1rem, calc(0.38rem + 1.56vw), 1.88rem),
+  "from-300-to-400": clamp(0.75rem, calc(0.39rem + 0.89vw), 1.25rem),
+  "from-200-to-300": clamp(0.5rem, calc(0.19rem + 0.78vw), 0.94rem),
+  "from-100-to-200": clamp(0.25rem, calc(-0.02rem + 0.67vw), 0.63rem),
   "from-400-to-900": clamp(1rem, calc(-3.64rem + 11.61vw), 7.5rem),
+  "from-600-to-900": clamp(2rem, calc(-1.93rem + 9.82vw), 7.5rem),
 );
 
 // ********************

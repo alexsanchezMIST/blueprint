@@ -1,0 +1,55 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import Container from "../components/Container.astro";
+import Columns from "../components/Columns.astro";
+import ButtonGroup from "../components/ButtonGroup.astro";
+import Button from "../components/Button.astro";
+import CardWrapper from "../components/CardWrapper.astro";
+import TestimonialWrapper from "../components/TestimonialWrapper.astro";
+import CTA from "../components/CTA.astro";
+---
+
+<Layout>
+  <Section>
+    <Container>
+      <Columns>
+        <div slot="first">
+          <h1 class="services--heading">Services</h1>
+          <p class="services--subheading">
+            Helping engineering and technology individuals and teams unleash
+            their potential and take their careers and lives to the next level.
+          </p>
+          <ButtonGroup>
+            <Button label="Book a call" />
+            <Button label="Learn more" isOutlined="true" />
+          </ButtonGroup>
+        </div>
+        <div slot="second"></div>
+      </Columns>
+    </Container>
+  </Section>
+  <Section>
+    <Container>
+      <CardWrapper />
+    </Container>
+  </Section>
+  <Section>
+    <Container>
+      <TestimonialWrapper />
+    </Container>
+  </Section>
+  <CTA />
+</Layout>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+
+  .services--heading {
+    margin-bottom: map-get($spacing-pairs, "from-300-to-400");
+  }
+
+  .services--subheading {
+    margin-bottom: map-get($spacing-pairs, "from-500-to-600");
+  }
+</style>

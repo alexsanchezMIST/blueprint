@@ -11,7 +11,7 @@
   }
 
   body {
-    font-family: "Satoshi", sans-serif;
+    font-family: "General Sans", sans-serif;
     overflow-x: hidden;
   }
 
@@ -25,27 +25,30 @@
     color: map-get($neutrals, "900");
   }
 
+  h1,
+  h2,
+  h3 {
+    font-weight: 600;
+  }
+
   h1 {
     font-size: map-get($font-size, "800");
-    font-weight: 900;
     letter-spacing: map-get($letter-spacing, "tighter");
   }
 
   h2 {
     font-size: map-get($font-size, "700");
-    font-weight: 800;
     letter-spacing: map-get($letter-spacing, "tight");
   }
 
   h3 {
     font-size: map-get($font-size, "600");
-    font-weight: 700;
   }
 
   h4,
   h5,
   h6 {
-    font-weight: 600;
+    font-weight: 500;
   }
 
   h4 {
@@ -67,5 +70,73 @@
   strong {
     font-weight: 600;
     color: map-get($neutrals, "700");
+  }
+
+  .mx-auto {
+    margin-inline: auto;
+  }
+
+  .mb-1 {
+    margin-bottom: map-get($spacing-pairs, "from-100-to-200");
+  }
+
+  .mb-2 {
+    margin-bottom: map-get($spacing-pairs, "from-200-to-300");
+  }
+
+  .mb-3 {
+    margin-bottom: map-get($spacing-pairs, "from-300-to-400");
+  }
+
+  .mb-4 {
+    margin-bottom: map-get($spacing-pairs, "from-400-to-500");
+  }
+
+  .mb-5 {
+    margin-bottom: map-get($spacing-pairs, "from-500-to-600");
+  }
+
+  .mb-6 {
+    margin-bottom: map-get($spacing-pairs, "from-600-to-700");
+  }
+
+  .mb-7 {
+    margin-bottom: map-get($spacing-pairs, "from-700-to-800");
+  }
+
+  .mb-8 {
+    margin-bottom: map-get($spacing-pairs, "from-800-to-900");
+  }
+
+  .py-1 {
+    padding-block: map-get($spacing-pairs, "from-100-to-200");
+  }
+
+  .py-2 {
+    padding-block: map-get($spacing-pairs, "from-200-to-300");
+  }
+
+  .py-3 {
+    padding-block: map-get($spacing-pairs, "from-300-to-400");
+  }
+
+  .py-4 {
+    padding-block: map-get($spacing-pairs, "from-400-to-500");
+  }
+
+  .py-5 {
+    padding-block: map-get($spacing-pairs, "from-500-to-600");
+  }
+
+  .py-6 {
+    padding-block: map-get($spacing-pairs, "from-600-to-700");
+  }
+
+  .py-7 {
+    padding-block: map-get($spacing-pairs, "from-700-to-800");
+  }
+
+  .py-8 {
+    padding-block: map-get($spacing-pairs, "from-800-to-900");
   }
 </style>
