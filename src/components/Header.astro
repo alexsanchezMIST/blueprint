@@ -6,7 +6,9 @@ import Button from "./Button.astro";
 <header id="header" class="nav">
   <Container>
     <div class="nav--wrapper">
-      <img src="" alt="" class="nav--logo" />
+      <a href="/" class="nav--brand">
+        <img src="/assets/jeff-perry-logo.svg" alt="" class="nav--logo" />
+      </a>
       <div class="nav--right">
         <ul class="nav--menu">
           <li class="nav--link">
@@ -16,7 +18,7 @@ import Button from "./Button.astro";
             <a href="/about">About</a>
           </li>
           <li class="nav--link">
-            <a href="/">Blog</a>
+            <a href="/blog">Blog</a>
           </li>
           <li class="nav--link">
             <a href="/services">Services</a>
@@ -50,7 +52,6 @@ import Button from "./Button.astro";
     place-items: center;
     width: 100vw;
     height: 5rem;
-    padding-block: map-get($spacing, "400");
     background-color: rgba($white, 0);
     border-bottom: 1px solid rgba($black, 0);
     transition: all 0.3s ease-in-out;
@@ -71,6 +72,12 @@ import Button from "./Button.astro";
   .nav--wrapper {
     justify-content: space-between;
   }
+
+  .nav--logo {
+    width: auto;
+    height: 2.75rem;
+  }
+
   .nav--right {
     display: none;
     @media screen and (min-width: map-get($breakpoints, "lg")) {

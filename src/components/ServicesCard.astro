@@ -1,0 +1,53 @@
+---
+import Button from "./Button.astro";
+
+export interface Props {
+  title: string;
+}
+
+const { title } = Astro.props as Props;
+---
+
+<div class="services--card">
+  <img src="" alt="" class="services--card--image" />
+  <div class="services--card--bottom">
+    <h3 class="services--card--title">{title}</h3>
+    <div class="services--description--wrapper">
+      <slot name="description"></slot>
+    </div>
+    <Button label="Book a call" />
+  </div>
+</div>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+
+  .services--card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: min(100%, 48.125rem);
+    margin-inline: auto;
+
+    &:not(:first-of-type) {
+      margin-top: map-get($spacing, "800");
+    }
+
+    &:not(:last-of-type) {
+      margin-bottom: map-get($spacing, "800");
+    }
+  }
+
+  .services--card--bottom {
+    padding: map-get($spacing, "400");
+  }
+
+  .services--card--title {
+    margin-bottom: map-get($spacing, "400");
+  }
+
+  .services--description--wrapper {
+    margin-bottom: map-get($spacing, "600");
+  }
+</style>

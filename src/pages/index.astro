@@ -24,17 +24,23 @@ import CTA from "../components/CTA.astro";
             Transitions
           </h1>
           <ButtonGroup>
-            <Button label="Watch now" />
-            <Button isOutlined="true" label="Learn more" />
+            <Button
+              href="https://morethan-engineering.com/eca-masterclass/"
+              label="Watch now"
+            />
+            <Button isOutlined="true" href="#career" label="Learn more" />
           </ButtonGroup>
         </div>
         <div slot="second"></div>
-        <Columns />
       </Columns>
     </Container>
+    <div class="section--wrapper">
+      <img src="/assets/jeff-perry-cutout.webp" alt="" class="hero--cutout" />
+    </div>
   </Section>
   <LogoCarousel />
   <Section>
+    <div id="career" class="career--anchor"></div>
     <Container>
       <Article>
         <h2>Your Career Engineered</h2>
@@ -92,7 +98,7 @@ import CTA from "../components/CTA.astro";
   <Section>
     <Container>
       <Columns>
-        <div slot="first">
+        <div slot="first" class="about--left">
           <h2>
             <span class="span">About</span> Jeff Perry
           </h2>
@@ -110,9 +116,11 @@ import CTA from "../components/CTA.astro";
             </p>
             <p>Sound interesting? Click the link below to learn more.</p>
           </div>
-          <Button isOutlined="true" label="Learn more" />
+          <Button isOutlined="true" href="/about" label="Learn more" />
         </div>
-        <div slot="second"></div>
+        <div slot="second">
+          <img src="/assets/jeff-perry-about.webp" alt="" class="about--img" />
+        </div>
         <Columns />
       </Columns>
     </Container>
@@ -130,15 +138,65 @@ import CTA from "../components/CTA.astro";
       margin-bottom: map-get($spacing, "600");
       font-weight: 500;
     }
+
+    .section--wrapper {
+      position: absolute;
+      z-index: 50;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      max-width: map-get($breakpoints, "xxl");
+      height: 100%;
+      margin-inline: auto;
+    }
+
+    .hero--cutout {
+      display: none;
+      position: absolute;
+      right: map-get($spacing-pairs, "from-400-to-900");
+      bottom: 0;
+      width: auto;
+      height: 35rem;
+
+      @media screen and (min-width: map-get($breakpoints, "lg")) {
+        display: block;
+      }
+    }
+
     .hero--heading {
       line-height: 1.125;
       margin-bottom: map-get($spacing, "600");
     }
+
     :global(.span) {
       padding: 0.25rem 1rem;
       background-color: map-get($primary, "500");
       color: white;
     }
+
+    .career--anchor {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      width: 100%;
+      visibility: hidden;
+    }
+
+    .about--left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      height: 100%;
+    }
+
+    .about--img {
+      box-shadow: 0 10px 15px -3px rgba($black, 0.1);
+    }
+
     h2 {
       margin-bottom: map-get($spacing, "400");
     }

@@ -1,0 +1,83 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import Container from "../components/Container.astro";
+import PostCard from "../components/PostCard.astro";
+import { getFirstPostsWithSlug } from "../lib/queries";
+
+const response = await fetch(
+  `${import.meta.env.WP_URL}/${import.meta.env.GRAPHQL_API_PATH}`,
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      query: getFirstPostsWithSlug,
+      variables: {
+        first: 20,
+      },
+    }),
+  }
+);
+
+const json = await response.json();
+const posts = json.data.posts.edges;
+---
+
+<Layout>
+  <Section>
+    <Container>
+      <div class="heading--wrapper">
+        <h1 class="blog--heading">Welcome to the blog</h1>
+        <p class="blog--subheading">
+          This blog will help you take your career and leadership challenges
+          beyond the problems to find solutions. Come here not just to learn new
+          ideas but to take action!
+        </p>
+      </div>
+    </Container>
+  </Section>
+  <Section>
+    <Container>
+      <div class="post--card--wrapper">
+        {posts.map((post) => (
+          <PostCard
+            href={post.node.slug}
+            title={post.node.title}
+            excerpt={post.node.excerpt}
+          />
+        ))}
+      </div>
+    </Container>
+  </Section>
+</Layout>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+
+  .heading--wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: column;
+    align-items: column;
+    width: min(100%, 48.125rem);
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .post--card--wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-rows: repeat(9, minmax(0, 1fr));
+    gap: map-get($spacing, "400");
+
+    @media screen and (min-width: map-get($breakpoints, "md")) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(5, minmax(0, 1fr));
+    }
+
+    @media screen and (min-width: map-get($breakpoints, "lg")) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>

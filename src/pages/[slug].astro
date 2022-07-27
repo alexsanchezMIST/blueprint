@@ -1,0 +1,93 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import Container from "../components/Container.astro";
+import Article from "../components/Article.astro";
+import CTA from "../components/CTA.astro";
+
+import { getFirstPostsWithSlug } from "../lib/queries";
+
+export async function getStaticPaths() {
+  const response = await fetch(
+    `${import.meta.env.WP_URL}/${import.meta.env.GRAPHQL_API_PATH}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        query: getFirstPostsWithSlug,
+        variables: {
+          first: 20,
+        },
+      }),
+    }
+  );
+
+  const json = await response.json();
+  const posts = json.data.posts.edges;
+  return posts.map((post) => {
+    return {
+      params: {
+        slug: post.node.slug,
+      },
+      props: { post },
+    };
+  });
+}
+const { slug } = Astro.params;
+const { post } = Astro.props;
+---
+
+<Layout>
+  <Section>
+    <Container>
+      <div class="post--heading--wrapper">
+        <h1 class="post--heading">{post.node.title}</h1>
+        <p class="post--excerpt">{post.node.excerpt}</p>
+      </div>
+    </Container>
+  </Section>
+  <Section>
+    <Container>
+      <div class="flex--center">
+        <div class="article--wrapper">
+          <Article>
+            {post.node.content}
+          </Article>
+        </div>
+      </div>
+    </Container>
+  </Section>
+  <CTA />
+</Layout>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+
+  .post--heading--wrapper {
+    width: min(100%, 48.125rem);
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .post--heading {
+    margin-bottom: map-get($spacing, "200");
+  }
+
+  .flex--center {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .article--wrapper {
+    display: inline-block;
+    margin-inline: auto;
+    padding: map-get($spacing, "600");
+    background-color: $white;
+    border: 1px solid map-get($neutrals, "50");
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 6px -1px rgba($black, 0.1),
+      0 2px 4px -2px rgba($black, 0.1);
+  }
+</style>

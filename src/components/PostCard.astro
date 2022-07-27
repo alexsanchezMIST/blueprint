@@ -1,0 +1,72 @@
+---
+export interface Props {
+  href?: string;
+  img?: string;
+  alt?: string;
+  title?: string;
+  excerpt?: string;
+}
+
+const { href, img, alt, title, excerpt } = Astro.props;
+---
+
+<a href={href} class="post--card">
+  <img src={img} alt={alt} class="post--thumbnail" />
+  <div class="post--card--bottom">
+    <div class="post--card--badge">Badge</div>
+    <h4 class="post--card--heading">{title}</h4>
+    <p class="post--card--excerpt">{excerpt.slice(0, 150) + "..."}</p>
+  </div>
+</a>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+
+  .post--card {
+    padding: map-get($spacing, "200");
+    border: 1px solid map-get($neutrals, "100");
+    border-radius: 0.25rem;
+    background-color: $white;
+    box-shadow: 0 4px 6px -1px rgba($black, 0.1),
+      0 2px 4px -2px rgba($black, 0.1);
+    transition: all 0.3s;
+
+    &:hover {
+      box-shadow: 0 10px 15px -3px rgba($black, 0.25),
+        0 4px 6px -4px rgba($black, 0.25);
+    }
+
+    &:hover .post--card--heading {
+      color: map-get($secondary, "500");
+    }
+  }
+
+  .post--card--badge {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: map-get($spacing, "200");
+    padding-block: map-get($spacing, "100");
+    padding-inline: map-get($spacing, "200");
+    border-radius: 0.125rem;
+    background-color: rgba(map-get($primary, "100"), 0.25);
+    font-size: map-get($font-size, "300");
+    font-weight: 600;
+    line-height: 1;
+    color: map-get($primary, "500");
+  }
+
+  .post--card--bottom {
+    padding: map-get($spacing, "400");
+  }
+
+  .post--card--heading {
+    margin-bottom: map-get($spacing, "400");
+    transition: color 0.3s;
+  }
+
+  .post--card--excerpt {
+    font-size: map-get($font-size, "300");
+  }
+</style>

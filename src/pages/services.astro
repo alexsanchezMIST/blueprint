@@ -6,6 +6,7 @@ import Columns from "../components/Columns.astro";
 import ButtonGroup from "../components/ButtonGroup.astro";
 import Button from "../components/Button.astro";
 import CardWrapper from "../components/CardWrapper.astro";
+import ServicesCard from "../components/ServicesCard.astro";
 import TestimonialWrapper from "../components/TestimonialWrapper.astro";
 import CTA from "../components/CTA.astro";
 ---
@@ -21,7 +22,10 @@ import CTA from "../components/CTA.astro";
             their potential and take their careers and lives to the next level.
           </p>
           <ButtonGroup>
-            <Button label="Book a call" />
+            <Button
+              href="https://morethan-engineering.com/eca-masterclass/"
+              label="Book a call"
+            />
             <Button label="Learn more" isOutlined="true" />
           </ButtonGroup>
         </div>
@@ -32,6 +36,91 @@ import CTA from "../components/CTA.astro";
   <Section>
     <Container>
       <CardWrapper />
+    </Container>
+  </Section>
+  <Section>
+    <Container>
+      <ServicesCard title="Career development coaching">
+        <div slot="description" class="services--description">
+          <p>
+            It's time to develop skills beyond the technical realm through a
+            personalized coaching approach. Let me guide you through your next
+            big transition with more clarity, speed, and purpose.
+          </p>
+          <p>
+            What we work on is customized to you, but can include: career
+            planning, leadership development, communication training, mindset
+            improvement, LinkedIn/resume writing, networking strategies,
+            interview preparation, compensation negotiation, and more!
+          </p>
+          <p>
+            Put simply—if you have a career canyon you need to cross, I can
+            build the bridge with you.
+          </p>
+        </div>
+      </ServicesCard>
+      <ServicesCard title="Leadership coaching">
+        <div slot="description" class="services--description">
+          <p>
+            It's time to develop skills beyond the technical realm through a
+            personalized coaching approach. Let me guide you through your next
+            big transition with more clarity, speed, and purpose.
+          </p>
+          <p>
+            What we work on is customized to you, but can include: career
+            planning, leadership development, communication training, mindset
+            improvement, LinkedIn/resume writing, networking strategies,
+            interview preparation, compensation negotiation, and more!
+          </p>
+          <p>
+            Put simply—if you have a career canyon you need to cross, I can
+            build the bridge with you.
+          </p>
+        </div>
+      </ServicesCard>
+      <ServicesCard title="Speaking">
+        <div slot="description" class="services--description">
+          <p>
+            Engineers and technical professionals need more than just strong
+            technical skills to succeed in today's workforce. You know this.
+          </p>
+          <p>
+            Workshops and presentations can be a great way to bring important
+            and life-changing ideas to a group or team. Each event uses a blend
+            of presentation, examples, participation, and a personal touch to
+            deliver a memorable experience with actionable learning.
+          </p>
+          <p>
+            Sessions can be delivered and adapted to various groups and
+            situations.
+          </p>
+          <p>
+            Workshops can be delivered as standalone events with additional
+            coaching/facilitation services (recommended). Time ranges represent
+            appropriate adaptations that can be made, but can drastically change
+            the workshop scope, depth, and deliverables.
+          </p>
+        </div>
+      </ServicesCard>
+      <ServicesCard title="Business consulting">
+        <div slot="description" class="services--description">
+          <p>
+            It's time to develop skills beyond the technical realm through a
+            personalized coaching approach. Let me guide you through your next
+            big transition with more clarity, speed, and purpose.
+          </p>
+          <p>
+            What we work on is customized to you, but can include: career
+            planning, leadership development, communication training, mindset
+            improvement, LinkedIn/resume writing, networking strategies,
+            interview preparation, compensation negotiation, and more!
+          </p>
+          <p>
+            Put simply—if you have a career canyon you need to cross, I can
+            build the bridge with you.
+          </p>
+        </div>
+      </ServicesCard>
     </Container>
   </Section>
   <Section>
@@ -51,5 +140,13 @@ import CTA from "../components/CTA.astro";
 
   .services--subheading {
     margin-bottom: map-get($spacing-pairs, "from-500-to-600");
+  }
+
+  .services--description p:not(:last-of-type) {
+    margin-bottom: map-get($spacing, "400");
+  }
+
+  .services--description p:not(:first-of-type) {
+    margin-top: map-get($spacing, "400");
   }
 </style>
