@@ -1,23 +1,19 @@
 ---
 import Testimonial from "./Testimonial.astro";
+
+import { getAllTestimonials } from "../lib/api.js";
+const testimonials = await getAllTestimonials();
+const featuredTestimonials = testimonials.edges.slice(0, 3);
 ---
 
 <div class="testimonial--wrapper">
-  <Testimonial
-    name="John Doe"
-    twitter="@john_doe"
-    body="La croix paleo sartorial shaman, artisan direct trade tumblr wayfarers. Edison bulb man bun succulents, man braid sustainable pop-up post-ironic letterpress synth live-edge. 3 wolf moon brooklyn waistcoat thundercats authentic."
-  />
-  <Testimonial
-    name="John Doe"
-    twitter="@john_doe"
-    body="La croix paleo sartorial shaman, artisan direct trade tumblr wayfarers. Edison bulb man bun succulents, man braid sustainable pop-up post-ironic letterpress synth live-edge. 3 wolf moon brooklyn waistcoat thundercats authentic."
-  />
-  <Testimonial
-    name="John Doe"
-    twitter="@john_doe"
-    body="La croix paleo sartorial shaman, artisan direct trade tumblr wayfarers. Edison bulb man bun succulents, man braid sustainable pop-up post-ironic letterpress synth live-edge. 3 wolf moon brooklyn waistcoat thundercats authentic."
-  />
+  {featuredTestimonials.map((testimonial) => (
+    <Testimonial
+      author={testimonial.node.testimonials.author}
+      title={testimonial.node.testimonials.title}
+      body={`${testimonial.node.content.slice(0, 150)} ...`}
+    />
+  ))}
 </div>
 
 <style lang="scss">

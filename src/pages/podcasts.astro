@@ -5,18 +5,18 @@ import Container from "../components/Container.astro";
 import PostCard from "../components/PostCard.astro";
 import CTA from "../components/CTA.astro";
 
-import { getAllPosts } from "../lib/api.js";
-const posts = await getAllPosts();
+import { getAllPodcasts } from "../lib/api.js";
+const podcasts = await getAllPodcasts();
 ---
 
 <Layout>
   <Section>
     <Container>
       <div class="heading--wrapper">
-        <h1 class="blog--heading">
-          Welcome to the <span class="span">blog</span>
+        <h1 class="podcast--heading">
+          Listen to the <span class="span">podcasts</span>
         </h1>
-        <p class="blog--subheading">
+        <p class="podcast--subheading">
           This blog will help you take your career and leadership challenges
           beyond the problems to find solutions. Come here not just to learn new
           ideas but to take action!
@@ -27,11 +27,11 @@ const posts = await getAllPosts();
   <Section>
     <Container>
       <div class="post--card--wrapper">
-        {posts.edges.map((post) => (
+        {podcasts.edges.map((podcast) => (
           <PostCard
-            href={`/${post.node.slug}`}
-            title={post.node.title}
-            excerpt={post.node.excerpt}
+            href={`/${podcast.node.slug}`}
+            title={podcast.node.title}
+            excerpt={podcast.node.excerpt}
           />
         ))}
       </div>
@@ -43,7 +43,7 @@ const posts = await getAllPosts();
 <style lang="scss">
   @import "../styles/variables.scss";
 
-  .blog--heading {
+  .podcast--heading {
     margin-bottom: map-get($spacing, "400");
   }
 

@@ -1,10 +1,10 @@
 import dotenv from "dotenv";
 dotenv.config();
-const API_URL = process.env.WP_URL;
+const API_URL = import.meta.env.WP_URL;
 
-/*
- * DEFAULT FETCH API FUNCTION
- */
+/******************* 
+STANDARD FETCH API CALL
+********************/
 
 async function fetchAPI(query, { variables } = {}) {
   const headers = { "Content-Type": "application/json" };
@@ -23,34 +23,20 @@ async function fetchAPI(query, { variables } = {}) {
   return json.data;
 }
 
-/*
- * FETCH ALL WP PAGES WITH A SLUG
- */
+/******************* 
+GET ALL POSTS
+********************/
 
-export async function getAllPagesWithSlugs() {
-  const data = await fetchAPI(`
-        {
-            pages(first: 10000) {
-                edges {
-                    node {
-                        slug
-                    }
-                }
-            }
-        }
-    `);
-
-  return data?.pages;
-}
-
-export async function getAllPostsWithSlugs() {
+export async function getAllPosts() {
   const data = await fetchAPI(`
         {
             posts(first: 10000) {
                 edges {
-                node {
-                    slug
-                }
+                    node {
+                        title
+                        slug
+                        excerpt
+                    }
                 }
             }
         }
@@ -59,30 +45,65 @@ export async function getAllPostsWithSlugs() {
   return data?.posts;
 }
 
-/*
- * FETCH WP PAGE CONTENT BASED ON SLUG
- */
+/******************* 
+GET POST BY SLUG
+********************/
 
-export async function getPageBySlug(slug) {
+export async function getPost(slug) {
   const data = await fetchAPI(`
-        {
-            page(id: "${slug}", idType: URI) {
-                title
-                content
-            }
+    {
+        post(id: "${slug}", idType: URI) {
+            title
+            content
         }
+    }
     `);
-  return data?.page;
+
+  return data?.post;
 }
 
-export async function getPostBySlug(slug) {
+/******************* 
+GET ALL PODCASTS
+********************/
+
+export async function getAllPodcasts() {
   const data = await fetchAPI(`
           {
-              post(id: "${slug}", idType: URI) {
-                  title
-                  content
+              posts(first: 10000, where: { tag: "podcast-episode" }) {
+                  edges {
+                      node {
+                          title
+                          slug
+                          excerpt
+                          }
+                      }
+                  }
               }
-          }
       `);
-  return data?.post;
+
+  return data?.posts;
+}
+
+/******************* 
+GET ALL TESTIMONIALS
+********************/
+
+export async function getAllTestimonials() {
+  const data = await fetchAPI(`
+    {
+      testimonials(first: 1000) {
+        edges {
+          node {
+            testimonials {
+              author
+              title
+            }
+            content
+          }
+        }
+      }
+    }
+  `);
+
+  return data?.testimonials;
 }

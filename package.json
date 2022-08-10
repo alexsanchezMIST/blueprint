@@ -10,6 +10,7 @@
     "lint:scss": "stylelint src/**/*.{astro,scss}"
   },
   "devDependencies": {
+    "@types/node": "^18.6.3",
     "astro": "^1.0.0-beta.59",
     "dotenv": "^16.0.1",
     "prettier-plugin-astro": "^0.1.1",

@@ -2,6 +2,7 @@
 import Meta from "../components/Meta.astro";
 import GlobalStyles from "../components/GlobalStyles.astro";
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <!DOCTYPE html>
@@ -20,6 +21,7 @@ import Header from "../components/Header.astro";
     <main id="main--content" class="main">
       <slot></slot>
     </main>
+    <Footer />
     <style lang="scss">
       @import "../styles/variables.scss";
       body {

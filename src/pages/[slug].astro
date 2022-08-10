@@ -5,44 +5,27 @@ import Container from "../components/Container.astro";
 import Article from "../components/Article.astro";
 import CTA from "../components/CTA.astro";
 
-import { getFirstPostsWithSlug } from "../lib/queries";
+import { getAllPosts, getPost } from "../lib/api.js";
 
 export async function getStaticPaths() {
-  const response = await fetch(
-    `${import.meta.env.WP_URL}/${import.meta.env.GRAPHQL_API_PATH}`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        query: getFirstPostsWithSlug,
-        variables: {
-          first: 20,
-        },
-      }),
-    }
-  );
-
-  const json = await response.json();
-  const posts = json.data.posts.edges;
-  return posts.map((post) => {
+  const posts = await getAllPosts();
+  return posts.edges.map(({ node }) => {
     return {
-      params: {
-        slug: post.node.slug,
-      },
-      props: { post },
+      params: { slug: node.slug },
     };
   });
 }
+
 const { slug } = Astro.params;
-const { post } = Astro.props;
+const post = await getPost(slug);
 ---
 
 <Layout>
   <Section>
     <Container>
       <div class="post--heading--wrapper">
-        <h1 class="post--heading">{post.node.title}</h1>
-        <p class="post--excerpt">{post.node.excerpt}</p>
+        <h1 class="post--heading">{post.title}</h1>
+        <p class="post--excerpt">{post.excerpt}</p>
       </div>
     </Container>
   </Section>
@@ -51,7 +34,7 @@ const { post } = Astro.props;
       <div class="flex--center">
         <div class="article--wrapper">
           <Article>
-            {post.node.content}
+            {post.content}
           </Article>
         </div>
       </div>
