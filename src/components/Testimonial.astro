@@ -20,6 +20,11 @@ const { author, title, body } = Astro.props as Props;
 
 <style lang="scss">
   @import "../styles/variables.scss";
+
+  .testimonial--content > * {
+    font-size: map-get($font-size, "300");
+  }
+
   .testimonial {
     padding: map-get($spacing, "600");
     background-color: $white;
@@ -29,7 +34,6 @@ const { author, title, body } = Astro.props as Props;
   .testimonial--content {
     color: map-get($neutrals, "300");
     margin-bottom: map-get($spacing, "400");
-    font-size: map-get($font-size, "300");
   }
   .testimonial--author,
   .testimonial--title {

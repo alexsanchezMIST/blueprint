@@ -36,6 +36,23 @@ import Button from "./Button.astro";
     );
     box-shadow: 0 25px 50px -12px rgba($black, 0.25);
 
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: 50;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 50%;
+      height: 100%;
+      background-image: url("/assets/cta-background.webp");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+      opacity: 0.75;
+      mix-blend-mode: screen;
+    }
+
     &::after {
       content: "";
       position: absolute;
