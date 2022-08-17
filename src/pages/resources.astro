@@ -2,21 +2,20 @@
 import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
 import Container from "../components/Container.astro";
-import PostCard from "../components/PostCard.astro";
-import CTA from "../components/CTA.astro";
+import DownloadCard from "../components/DownloadCard.astro";
 
-import { getAllPodcasts } from "../lib/api.js";
-const podcasts = await getAllPodcasts();
+import { getAllDownloads } from "../lib/api.js";
+const downloads = await getAllDownloads();
 ---
 
 <Layout>
   <Section>
     <Container>
       <div class="heading--wrapper">
-        <h1 class="podcast--heading">
-          Listen to the <span class="span">podcasts</span>
+        <h1 class="resource--heading">
+          Check out some free <span class="span">resources</span>
         </h1>
-        <p class="podcast--subheading">
+        <p class="resource--subheading">
           This blog will help you take your career and leadership challenges
           beyond the problems to find solutions. Come here not just to learn new
           ideas but to take action!
@@ -26,20 +25,21 @@ const podcasts = await getAllPodcasts();
   </Section>
   <Section>
     <Container>
-      <div class="post--card--wrapper">
-        {podcasts.edges.map((podcast) => (
-          <PostCard href={`/${podcast.node.slug}`} title={podcast.node.title} />
-        ))}
-      </div>
+      {downloads.edges.map((download) => (
+        <DownloadCard
+          title={download.node.title}
+          body={download.node.content}
+          href={download.node.downloads.link}
+        />
+      ))}
     </Container>
   </Section>
-  <CTA />
 </Layout>
 
 <style lang="scss">
   @import "../styles/variables.scss";
 
-  .podcast--heading {
+  .resource--heading {
     margin-bottom: map-get($spacing, "400");
   }
 

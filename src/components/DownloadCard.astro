@@ -1,0 +1,99 @@
+---
+export interface Props {
+  title: string;
+  body: string;
+  href: string;
+}
+
+const { title, body, href } = Astro.props;
+---
+
+<div class="download--card">
+  <img src="" alt="" class="download--img" />
+  <div class="download--right">
+    <div class="download--badge">Download</div>
+    <h3 class="download--heading">{title}</h3>
+    <p class="download--content">{body}</p>
+    <a href={href} target="_blank" class="download--btn">Download now</a>
+  </div>
+</div>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+
+  .download--card {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-auto-rows: min-content;
+    gap: map-get($spacing, "500");
+    width: min(100%, 60.625rem);
+    margin-inline: auto;
+    padding: map-get($spacing, "600");
+    border: 1px solid map-get($primary, "100");
+
+    &:not(:last-of-type) {
+      margin-bottom: map-get($spacing, "900");
+    }
+
+    @media screen and (min-width: map-get($breakpoints, "md")) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(1, minmax(0, 1fr));
+    }
+  }
+
+  .download--badge {
+    display: inline-block;
+    margin-bottom: map-get($spacing, "400");
+    padding-block: map-get($spacing, "100");
+    padding-inline: map-get($spacing, "200");
+    background-color: map-get($secondary, "50");
+    border-radius: 0.125rem;
+    font-size: map-get($font-size, "300");
+    font-weight: 600;
+    color: map-get($secondary, "500");
+    text-transform: uppercase;
+  }
+
+  .download--heading {
+    font-size: map-get($font-size, "500");
+    font-weight: 500;
+    margin-bottom: map-get($spacing, "200");
+  }
+
+  .download--content {
+    font-size: map-get($font-size, "400");
+    font-weight: 400;
+    margin-bottom: map-get($spacing, "600");
+  }
+
+  .download--btn {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: map-get($spacing, "200");
+    padding-block: map-get($spacing, "300");
+    padding-inline: map-get($spacing, "400");
+    border-radius: 0.125rem;
+    cursor: pointer;
+    font-size: map-get($font-size, "400");
+    line-height: 1;
+    font-weight: 500;
+    text-align: center;
+    white-space: no-wrap;
+    background-color: $white;
+    border: 1px solid map-get($secondary, "500");
+    color: map-get($secondary, "500");
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      border-color: map-get($secondary, "400");
+      color: map-get($secondary, "400");
+    }
+
+    &:active {
+      border-color: map-get($secondary, "600");
+      color: map-get($secondary, "600");
+    }
+  }
+</style>

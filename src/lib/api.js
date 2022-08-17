@@ -36,6 +36,12 @@ export async function getAllPosts() {
                         title
                         slug
                         excerpt
+                        featuredImage {
+                          node {
+                            altText
+                            sourceUrl
+                          }
+                        }
                     }
                 }
             }
@@ -55,6 +61,12 @@ export async function getPost(slug) {
         post(id: "${slug}", idType: URI) {
             title
             content
+            featuredImage {
+              node {
+                altText
+                sourceUrl
+              }
+            }
         }
     }
     `);
@@ -68,20 +80,20 @@ GET ALL PODCASTS
 
 export async function getAllPodcasts() {
   const data = await fetchAPI(`
-          {
-              posts(first: 10000, where: { tag: "podcast-episode" }) {
-                  edges {
-                      node {
-                          title
-                          slug
-                          excerpt
-                          }
-                      }
-                  }
-              }
+  {
+    podcasts(first: 1000) {
+      edges {
+        node {
+          title
+          slug
+          content
+        }
+      }
+    }
+  }
       `);
 
-  return data?.posts;
+  return data?.podcasts;
 }
 
 /******************* 
@@ -106,4 +118,28 @@ export async function getAllTestimonials() {
   `);
 
   return data?.testimonials;
+}
+
+/******************* 
+GET ALL DOWNLOADS
+********************/
+
+export async function getAllDownloads() {
+  const data = await fetchAPI(`
+    {
+      downloads(first: 100) {
+        edges {
+          node {
+            content
+            title
+            downloads {
+              link
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  return data?.downloads;
 }

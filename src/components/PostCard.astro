@@ -15,7 +15,7 @@ const { href, img, alt, title, excerpt } = Astro.props;
   <div class="post--card--bottom">
     <div class="post--card--badge">Badge</div>
     <h4 class="post--card--heading">{title}</h4>
-    <p class="post--card--excerpt">{excerpt.slice(0, 150) + "..."}</p>
+    <!--     <div class="post--card--excerpt" set:html={excerpt.slice(0, 150) + "..."}> -->
   </div>
 </a>
 

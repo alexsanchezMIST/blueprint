@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Section from "../components/Section.astro";
 import Container from "../components/Container.astro";
 import Button from "../components/Button.astro";
+import { Icon } from "astro-icon";
 import ContactForm from "../components/ContactForm.astro";
 import CTA from "../components/CTA.astro";
 ---
@@ -18,7 +19,13 @@ import CTA from "../components/CTA.astro";
             Either fill out the form below or click on the button to email me
             directly, and I'll get back to you ASAP.
           </p>
-          <Button isOutlined="true" label="Send me an email" />
+          <Button
+            href="mailto:jeff@morethan-engineering.com"
+            isOutlined="true"
+            label="Send me an email"
+          >
+            <Icon pack="heroicons-solid" name="mail" slot="icon--left" />
+          </Button>
         </div>
       </div>
     </Container>
@@ -33,6 +40,13 @@ import CTA from "../components/CTA.astro";
 
 <style lang="scss">
   @import "../styles/variables.scss";
+
+  [astro-icon] {
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
   .contact--wrapper {
     display: flex;
     flex-direction: row;

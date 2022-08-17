@@ -27,8 +27,13 @@ import CTA from "../components/CTA.astro";
             <Button
               href="https://morethan-engineering.com/eca-masterclass/"
               label="Watch now"
-            />
-            <Button isOutlined="true" href="#career" label="Learn more" />
+            >
+              <Icon pack="heroicons-solid" name="play" slot="icon--left" />
+            </Button>
+            <Button isOutlined="true" href="#career" label="Learn more">
+              <Icon pack="heroicons-solid" name="arrow-right" slot="icon--right"
+              />
+            </Button>
           </ButtonGroup>
         </div>
         <div slot="second"></div>
@@ -36,6 +41,7 @@ import CTA from "../components/CTA.astro";
     </Container>
     <div class="section--wrapper">
       <img src="/assets/jeff-perry-cutout.webp" alt="" class="hero--cutout" />
+      <img src="/assets/background-icons.svg" alt="" class="hero--background" />
     </div>
   </Section>
   <LogoCarousel />
@@ -116,7 +122,10 @@ import CTA from "../components/CTA.astro";
             </p>
             <p>Sound interesting? Click the link below to learn more.</p>
           </div>
-          <Button isOutlined="true" href="/about" label="Learn more" />
+          <Button isOutlined="true" href="/about" label="Learn more">
+            <Icon pack="heroicons-solid" name="arrow-right" slot="icon--right"
+            />
+          </Button>
         </div>
         <div slot="second">
           <img src="/assets/jeff-perry-about.webp" alt="" class="about--img" />
@@ -139,6 +148,12 @@ import CTA from "../components/CTA.astro";
       font-weight: 500;
     }
 
+    [astro-icon] {
+      display: inline-block;
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+
     .section--wrapper {
       position: absolute;
       z-index: 50;
@@ -155,10 +170,27 @@ import CTA from "../components/CTA.astro";
     .hero--cutout {
       display: none;
       position: absolute;
+      z-index: 100;
       right: map-get($spacing-pairs, "from-400-to-900");
       bottom: 0;
       width: auto;
       height: 35rem;
+
+      @media screen and (min-width: map-get($breakpoints, "lg")) {
+        display: block;
+      }
+    }
+
+    .hero--background {
+      display: none;
+      position: absolute;
+      z-index: 50;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: auto;
+      height: 100%;
+      opacity: 0.75;
 
       @media screen and (min-width: map-get($breakpoints, "lg")) {
         display: block;

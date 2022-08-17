@@ -10,7 +10,7 @@ const { author, title, body } = Astro.props as Props;
 
 <div class="testimonial">
   <div class="testimonial--content">
-    {body}
+    <Fragment set:html={body} />
   </div>
   <div class="testimonial--bottom">
     <h6 class="testimonial--author">{author}</h6>
@@ -29,6 +29,7 @@ const { author, title, body } = Astro.props as Props;
   .testimonial--content {
     color: map-get($neutrals, "300");
     margin-bottom: map-get($spacing, "400");
+    font-size: map-get($font-size, "300");
   }
   .testimonial--author,
   .testimonial--title {

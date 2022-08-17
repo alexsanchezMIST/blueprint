@@ -1,0 +1,111 @@
+---
+import { Icon } from "astro-icon";
+
+export interface Props {
+  slug?: string;
+}
+
+const { slug } = Astro.props;
+---
+
+<div class="share--wrapper">
+  <a
+    href="https://www.facebook.com/sharer.php?u={url}"
+    class="share--btn facebook"
+  >
+    <Icon pack="fa-brands" name="facebook" />Share to Facebook
+  </a>
+  <a
+    href="https://twitter.com/intent/tweet?url={url}&text={title}&via={user_id}&hashtags={hash_tags}"
+    class="share--btn twitter"
+  >
+    <Icon pack="fa-brands" name="twitter" />Share to Twitter
+  </a>
+  <a
+    href="https://www.linkedin.com/sharing/share-offsite/?url={url}"
+    class="share--btn linkedin"
+  >
+    <Icon pack="fa-brands" name="linkedin" />Share to LinkedIn
+  </a>
+</div>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+
+  .share--wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    @media screen and (min-width: map-get($breakpoints, "md")) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .share--btn {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: map-get($spacing, "400");
+    padding-block: map-get($spacing, "200");
+    padding-inline: map-get($spacing, "400");
+    border-radius: 0.125rem;
+    box-shadow: 0 10px 15px -3px rgba($black, 0.1),
+      0 4px 6px -4px rgba($black, 0.1);
+    font-size: map-get($font-size, "300");
+    font-weight: 600;
+    color: $white;
+
+    &.facebook {
+      background-color: #337fff;
+
+      &:hover {
+        background-color: #5594ff;
+      }
+
+      &:active {
+        background-color: #005bf5;
+      }
+    }
+
+    &.twitter {
+      background-color: #33ccff;
+
+      &:hover {
+        background-color: #55d4ff;
+      }
+
+      &:active {
+        background-color: #00b8f5;
+      }
+    }
+
+    &.linkedin {
+      background-color: #006699;
+
+      &:hover {
+        background-color: #008ed4;
+      }
+
+      &:active {
+        background-color: #00527a;
+      }
+    }
+
+    @media screen and (min-width: map-get($breakpoints, "md")) {
+      margin-bottom: unset;
+    }
+  }
+
+  [astro-icon] {
+    display: inline-block;
+    width: auto;
+    height: 1.25rem;
+    margin-right: map-get($spacing, "200");
+  }
+</style>

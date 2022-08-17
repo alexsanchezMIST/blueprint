@@ -4,6 +4,7 @@ import Section from "../components/Section.astro";
 import Container from "../components/Container.astro";
 import Columns from "../components/Columns.astro";
 import Button from "../components/Button.astro";
+import { Icon } from "astro-icon";
 import Article from "../components/Article.astro";
 import LogoCarousel from "../components/LogoCarousel.astro";
 import TestimonialWrapper from "../components/TestimonialWrapper.astro";
@@ -20,14 +21,17 @@ import CTA from "../components/CTA.astro";
             Get to know the founder of More Than Engineering.
           </p>
           <Button
-            href="https://www.engineeringcareeraccelerator.com/precall-survey"
+            href="https://go.oncehub.com/JeffPerryIntroCall"
             label="Book a call"
-          />
+          >
+            <Icon pack="heroicons-solid" name="phone" slot="icon--left" />
+          </Button>
         </div>
       </Columns>
     </Container>
     <div class="section--wrapper">
-      <img src="/assets/jeff-perry-cutout.webp" alt="" class="hero--cutout" />
+      <img src="/assets/jeff-about-cutout.webp" alt="" class="hero--cutout" />
+      <img src="/assets/background-icons.svg" alt="" class="hero--background" />
     </div>
     <div class="bottom--rule"></div>
   </Section>
@@ -107,6 +111,12 @@ import CTA from "../components/CTA.astro";
 <style lang="scss">
   @import "../styles/variables.scss";
 
+  [astro-icon] {
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
   .about--heading {
     margin-bottom: map-get($spacing, "400");
   }
@@ -130,10 +140,27 @@ import CTA from "../components/CTA.astro";
   .hero--cutout {
     display: none;
     position: absolute;
+    z-index: 100;
     right: map-get($spacing-pairs, "from-400-to-900");
     bottom: 0;
     width: auto;
     height: 27.5rem;
+
+    @media screen and (min-width: map-get($breakpoints, "lg")) {
+      display: block;
+    }
+  }
+
+  .hero--background {
+    display: none;
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: 100%;
+    opacity: 0.75;
 
     @media screen and (min-width: map-get($breakpoints, "lg")) {
       display: block;

@@ -2,8 +2,8 @@
 export interface Props {
   title: string;
   body: string;
-  href: string;
-  icon: string;
+  href?: string;
+  icon?: string;
 }
 const { href, icon, title, body } = Astro.props as Props;
 ---
@@ -14,9 +14,7 @@ const { href, icon, title, body } = Astro.props as Props;
     <h5 class="card--heading">
       {title}
     </h5>
-    <p class="card--content">
-      {body}
-    </p>
+    <p class="card--content">{body}</p>
     <p class="card--link">Learn more</p>
   </a>
 </div>

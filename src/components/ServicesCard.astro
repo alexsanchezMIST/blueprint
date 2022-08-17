@@ -1,26 +1,39 @@
 ---
 import Button from "./Button.astro";
+import { Icon } from "astro-icon";
 
 export interface Props {
   title: string;
+  src?: string;
 }
 
-const { title } = Astro.props as Props;
+const { title, src } = Astro.props as Props;
 ---
 
 <div class="services--card">
-  <img src="" alt="" class="services--card--image" />
+  <img src={src} alt="" class="services--card--image" />
   <div class="services--card--bottom">
     <h3 class="services--card--title">{title}</h3>
     <div class="services--description--wrapper">
       <slot name="description"></slot>
     </div>
-    <Button label="Book a call" />
+    <Button
+      href="https://morethan-engineering.com/eca-masterclass/"
+      label="Book a call"
+    >
+      <Icon pack="heroicons-solid" name="phone" slot="icon--left" />
+    </Button>
   </div>
 </div>
 
 <style lang="scss">
   @import "../styles/variables.scss";
+
+  [astro-icon] {
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
 
   .services--card {
     display: flex;
@@ -29,6 +42,9 @@ const { title } = Astro.props as Props;
     align-items: center;
     width: min(100%, 48.125rem);
     margin-inline: auto;
+    padding-block: map-get($spacing, "700");
+    padding-inline: map-get($spacing, "600");
+    border: 1px solid map-get($primary, "100");
 
     &:not(:first-of-type) {
       margin-top: map-get($spacing, "800");
@@ -39,9 +55,14 @@ const { title } = Astro.props as Props;
     }
   }
 
-  .services--card--bottom {
-    padding: map-get($spacing, "400");
+  .services--card--image {
+    margin-bottom: map-get($spacing, "600");
+    box-shadow: 0 25px 50px -12px rgba($black, 0.25);
   }
+
+  /*   .services--card--bottom {
+    padding: map-get($spacing, "400");
+  } */
 
   .services--card--title {
     margin-bottom: map-get($spacing, "400");

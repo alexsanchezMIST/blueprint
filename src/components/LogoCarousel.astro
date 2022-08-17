@@ -10,12 +10,17 @@ import Container from "./Container.astro";
   </Container>
   <div class="carousel">
     <div class="logo-wrapper scroll-left">
-      <img src="/assets/blue-origin.svg" alt="" />
-      <img src="/assets/blue-origin.svg" alt="" />
-      <img src="/assets/blue-origin.svg" alt="" />
-      <img src="/assets/blue-origin.svg" alt="" />
-      <img src="/assets/blue-origin.svg" alt="" />
-      <img src="/assets/blue-origin.svg" alt="" />
+      <img src="/assets/blue-origin-logo.svg" alt="" class="logo" />
+      <img src="/assets/amazon-logo.svg" alt="" class="logo" />
+      <img src="/assets/amway-logo.svg" alt="" class="logo" />
+      <img src="/assets/bbt-logo.svg" alt="" class="logo" />
+      <img src="/assets/boeing-logo.svg" alt="" class="logo" />
+      <img src="/assets/meta-logo.svg" alt="" class="logo" />
+      <img src="/assets/micron-logo.svg" alt="" class="logo" />
+      <img src="/assets/microsoft-logo.svg" alt="" class="logo" />
+      <img src="/assets/nike-logo.svg" alt="" class="logo" />
+      <img src="/assets/northrop-grumman-logo.svg" alt="" class="logo" />
+      <img src="/assets/t-mobile-logo.svg" alt="" class="logo" />
     </div>
   </div>
   <div class="rule--bottom"></div>
@@ -42,7 +47,7 @@ import Container from "./Container.astro";
   }
 
   h5 {
-    margin-bottom: map-get($spacing, "500");
+    margin-bottom: map-get($spacing, "600");
     text-align: center;
   }
   .carousel {
@@ -56,7 +61,10 @@ import Container from "./Container.astro";
     align-items: center;
     width: 100%;
   }
-  img {
-    margin-inline: map-get($spacing, "400");
+  .logo {
+    width: auto;
+    height: 2rem;
+    margin-inline: map-get($spacing, "600");
+    opacity: 0.6;
   }
 </style>
