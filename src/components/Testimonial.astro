@@ -9,7 +9,7 @@ const { author, title, body } = Astro.props as Props;
 ---
 
 <div class="testimonial">
-  <div class="testimonial--content" set:html={body}></div>
+  <div class="testimonial--content">{body}</div>
   <div class="testimonial--bottom">
     <h6 class="testimonial--author">{author}</h6>
     <p class="testimonial--title">{title}</p>
