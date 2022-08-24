@@ -11,7 +11,7 @@ const featuredTestimonials = testimonials.edges.slice(0, 3);
     <Testimonial
       author={testimonial.node.testimonials.author}
       title={testimonial.node.testimonials.title}
-      body={`${testimonial.node.content}`}
+      body={testimonial.node.content}
     />
   ))}
 </div>
