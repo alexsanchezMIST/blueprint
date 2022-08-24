@@ -29,7 +29,7 @@ const posts = await getAllPosts();
   <Section>
     <Container>
       <div class="post--card--wrapper">
-        {posts.edges.map((post) => (
+        <!-- {posts.edges.map((post) => (
           <PostCard
             href={`/${post.node.slug}`}
             categories={post.node.categories.edges.node}
@@ -38,7 +38,7 @@ const posts = await getAllPosts();
             src={post.node.featuredImage.node.sourceUrl}
             alt={post.node.featuredImage.node.altText}
           />
-        ))}
+        ))} -->
       </div>
     </Container>
   </Section>
