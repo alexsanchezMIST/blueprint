@@ -38,8 +38,9 @@ const linkedInURL = `https://www.linkedin.com/sharing/share-offsite/?url=${baseU
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    margin-top: map-get($spacing, "600") @media screen and
-      (min-width: map-get($breakpoints, "md")) {
+    margin-top: map-get($spacing, "600");
+
+    @media screen and (min-width: map-get($breakpoints, "md")) {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
