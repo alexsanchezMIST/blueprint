@@ -6,13 +6,15 @@ export interface Props {
   title: string;
   body: string;
   href: string;
+  img?: string;
+  alt?: string;
 }
 
-const { title, body, href } = Astro.props;
+const { title, body, href, img, alt } = Astro.props;
 ---
 
 <div class="download--card">
-  <img src="" alt="" class="download--img" />
+  <img src={img} alt={alt} class="download--img" />
   <div class="download--right">
     <div class="download--badge">Download</div>
     <h3 class="download--heading">{title}</h3>
@@ -44,6 +46,19 @@ const { title, body, href } = Astro.props;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       grid-template-rows: repeat(1, minmax(0, 1fr));
     }
+  }
+
+  .download--img {
+    width: min(100%, 20rem);
+    height: auto;
+    box-shadow: 0 25px 50px -12px rgba($black, 0.25);
+  }
+
+  .download--right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
   }
 
   .download--badge {

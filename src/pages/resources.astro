@@ -30,6 +30,8 @@ const downloads = await getAllDownloads();
           title={download.node.title}
           body={download.node.content}
           href={download.node.downloads.link}
+          img={download.node.featuredImage.node.sourceUrl}
+          alt={download.node.featuredImage.node.altText}
         />
       ))}
     </Container>
