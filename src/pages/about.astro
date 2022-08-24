@@ -16,7 +16,9 @@ import CTA from "../components/CTA.astro";
     <Container>
       <Columns>
         <div slot="first">
-          <h1 class="about--heading">About Jeff Perry</h1>
+          <h1 class="about--heading">
+            <span class="span">About</span> Jeff Perry
+          </h1>
           <p class="about--subheading">
             Get to know the founder of More Than Engineering.
           </p>
@@ -110,12 +112,6 @@ import CTA from "../components/CTA.astro";
 
 <style lang="scss">
   @import "../styles/variables.scss";
-
-  [astro-icon] {
-    display: inline-block;
-    width: 1.25rem;
-    height: 1.25rem;
-  }
 
   .about--heading {
     margin-bottom: map-get($spacing, "400");

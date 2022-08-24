@@ -52,6 +52,7 @@ import CTA from "../components/CTA.astro";
   </Section>
   <Section>
     <Container>
+      <div id="career-development-coaching" class="anchor"></div>
       <ServicesCard
         src="/assets/services-career.webp"
         title="Career development coaching"
@@ -74,6 +75,7 @@ import CTA from "../components/CTA.astro";
           </p>
         </div>
       </ServicesCard>
+      <div id="leadership-coaching" class="anchor"></div>
       <ServicesCard
         src="/assets/services-leadership.webp"
         title="Leadership coaching"
@@ -96,6 +98,7 @@ import CTA from "../components/CTA.astro";
           </p>
         </div>
       </ServicesCard>
+      <div id="speaking" class="anchor"></div>
       <ServicesCard src="/assets/services-speaking.webp" title="Speaking">
         <div slot="description" class="services--description">
           <p>
@@ -120,6 +123,7 @@ import CTA from "../components/CTA.astro";
           </p>
         </div>
       </ServicesCard>
+      <div id="business-consulting" class="anchor"></div>
       <ServicesCard
         src="/assets/services-consulting.webp"
         title="Business consulting"
@@ -228,5 +232,11 @@ import CTA from "../components/CTA.astro";
 
   .services--description p:not(:first-of-type) {
     margin-top: map-get($spacing, "400");
+  }
+
+  .anchor {
+    width: 100%;
+    height: 1px;
+    visibility: hidden;
   }
 </style>

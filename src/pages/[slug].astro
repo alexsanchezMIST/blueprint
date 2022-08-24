@@ -19,7 +19,6 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const post = await getPost(slug);
-const postBody = post.content;
 ---
 
 <Layout>
@@ -27,20 +26,25 @@ const postBody = post.content;
     <Container>
       <div class="post--heading--wrapper">
         <h1 class="post--heading">{post.title}</h1>
-        <p class="post--excerpt">{post.excerpt}</p>
-        <!--         <img
-          src={post.featuredImage.node.sourceUrl}
-          alt={post.featuredImage.node.altText}
-        /> -->
+        {post.excerpt && <p class="post--excerpt">{post.excerpt}</p>}
       </div>
     </Container>
   </Section>
+  {post.featuredImage && (
+    <section>
+      <img
+        src={post.featuredImage.node.sourceUrl}
+        alt={post.featuredImage.node.altText}
+        class="post--thumbnail"
+      />
+    </section>
+  )}
   <Section>
     <Container>
       <div class="flex--center">
         <div class="article--wrapper">
           <Article set:html={post.content} />
-          <ShareButtons />
+          <ShareButtons slug={post.slug} />
         </div>
       </div>
     </Container>
@@ -59,6 +63,14 @@ const postBody = post.content;
 
   .post--heading {
     margin-bottom: map-get($spacing, "200");
+  }
+
+  .post--thumbnail {
+    margin-inline: auto;
+    width: min(100vw, 96.875rem);
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
   }
 
   .flex--center {

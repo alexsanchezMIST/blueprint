@@ -4,12 +4,16 @@ export interface Props {
   href?: string;
   size?: string;
   label: string;
+  isBlank?: string;
 }
 
-const { isOutlined, label, href } = Astro.props as Props;
+const { isOutlined, label, href, isBlank } = Astro.props as Props;
 ---
 
-<a class={isOutlined === "true" ? "is-outlined" : ""} href={href}
+<a
+  class={isOutlined === "true" ? "is-outlined" : ""}
+  href={href}
+  target={isBlank === "true" ? "_blank" : ""}
   ><slot name="icon--left"></slot>{label}<slot name="icon--right"></slot>
 </a>
 

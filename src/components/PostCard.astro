@@ -1,21 +1,26 @@
 ---
 export interface Props {
   href?: string;
-  img?: string;
+  src?: string;
   alt?: string;
   title?: string;
+  categories?: string;
   excerpt?: string;
 }
 
-const { href, img, alt, title, excerpt } = Astro.props;
+const { href, src, alt, title, categories, excerpt } = Astro.props;
 ---
 
 <a href={href} class="post--card">
-  <img src={img} alt={alt} class="post--thumbnail" />
+  <img src={src} alt={alt} class="post--thumbnail" />
   <div class="post--card--bottom">
-    <div class="post--card--badge">Badge</div>
+    {categories.edges.node.map((cat) => {
+      ;<a href={cat.slug} class="post--card--badge">
+        {cat.name}
+      </a>
+    })}
     <h4 class="post--card--heading">{title}</h4>
-    <!--     <div class="post--card--excerpt" set:html={excerpt.slice(0, 150) + "..."}> -->
+    <p class="post--card--excerpt" set:html={excerpt.slice(0, 150) + "..."}></p>
   </div>
 </a>
 
@@ -39,6 +44,13 @@ const { href, img, alt, title, excerpt } = Astro.props;
     &:hover .post--card--heading {
       color: map-get($secondary, "500");
     }
+  }
+
+  .post--thumbnail {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
   }
 
   .post--card--badge {

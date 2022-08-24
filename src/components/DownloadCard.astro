@@ -1,4 +1,7 @@
 ---
+import { Icon } from "astro-icon";
+import Button from "./Button.astro";
+
 export interface Props {
   title: string;
   body: string;
@@ -13,8 +16,10 @@ const { title, body, href } = Astro.props;
   <div class="download--right">
     <div class="download--badge">Download</div>
     <h3 class="download--heading">{title}</h3>
-    <p class="download--content">{body}</p>
-    <a href={href} target="_blank" class="download--btn">Download now</a>
+    <div class="download--content" set:html={body}></div>
+    <Button isOutlined="true" href={href} label="Download now">
+      <Icon pack="heroicons-solid" name="download" slot="icon--left" />
+    </Button>
   </div>
 </div>
 
@@ -61,7 +66,7 @@ const { title, body, href } = Astro.props;
   }
 
   .download--content {
-    font-size: map-get($font-size, "400");
+    font-size: map-get($font-size, "300");
     font-weight: 400;
     margin-bottom: map-get($spacing, "600");
   }

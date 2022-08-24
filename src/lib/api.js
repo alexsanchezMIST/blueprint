@@ -52,6 +52,33 @@ export async function getAllPosts() {
 }
 
 /******************* 
+GET ALL POST CATEGORIES
+********************/
+
+export async function getAllCategories() {
+  const data = await fetchAPI(`
+        {
+            posts(first: 10000) {
+                edges {
+                    node {
+                        categories(first: 3) {
+                          edges {
+                            node {
+                              name
+                              slug
+                            }
+                          }
+                        }
+                    }
+                }
+            }
+        }
+    `);
+
+  return data?.categories;
+}
+
+/******************* 
 GET POST BY SLUG
 ********************/
 
@@ -61,9 +88,16 @@ export async function getPost(slug) {
         post(id: "${slug}", idType: URI) {
             title
             content
+            categories(first: 3) {
+              edges {
+                node {
+                  name
+                  slug
+                }
+              }
+            }
             featuredImage {
               node {
-                altText
                 sourceUrl
               }
             }

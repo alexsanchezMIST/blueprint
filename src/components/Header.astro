@@ -14,10 +14,10 @@ import Button from "./Button.astro";
           <li class="nav--link">
             <a href="/about">About</a>
           </li>
-          <li class="nav--link">
+          <li class="nav--link hidden">
             <a href="/blog">Blog</a>
           </li>
-          <li class="nav--link">
+          <li class="nav--link hidden">
             <a href="/podcasts">Podcasts</a>
           </li>
           <li class="nav--link">
@@ -144,6 +144,10 @@ import Button from "./Button.astro";
   }
 
   .nav--mobile-menu {
+    display: none;
+  }
+
+  .hidden {
     display: none;
   }
 </style>

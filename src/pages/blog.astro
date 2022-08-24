@@ -32,8 +32,11 @@ const posts = await getAllPosts();
         {posts.edges.map((post) => (
           <PostCard
             href={`/${post.node.slug}`}
+            categories={post.node.categories.edges.node}
             title={post.node.title}
             excerpt={post.node.excerpt}
+            src={post.node.featuredImage.node.sourceUrl}
+            alt={post.node.featuredImage.node.altText}
           />
         ))}
       </div>

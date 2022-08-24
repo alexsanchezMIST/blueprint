@@ -1,6 +1,7 @@
 ---
 import Section from "./Section.astro";
 import Container from "./Container.astro";
+import { Icon } from "astro-icon";
 import Button from "./Button.astro";
 ---
 
@@ -10,14 +11,16 @@ import Button from "./Button.astro";
       <div class="cta--inner">
         <div class="cta--left">
           <h2 class="cta--heading">
-            Get more <span class="cta--span">clarity</span> now
+            Get more <span class="span">clarity</span> now
           </h2>
           <p class="cta--subheading">
             The Career Clarity Checklist will help you crush fear, get immediate
             clarity, and take intentional action on goals you believe in. Start
             today!
           </p>
-          <Button label="Get clarity now" />
+          <Button label="Get clarity now">
+            <Icon pack="heroicons-solid" name="download" slot="icon--left" />
+          </Button>
         </div>
       </div>
     </div>
@@ -86,11 +89,6 @@ import Button from "./Button.astro";
   .cta--heading {
     color: $white;
     margin-bottom: map-get($spacing, "400");
-  }
-  .cta--span {
-    padding: 0.25rem 0.75rem;
-    background-color: $white;
-    color: map-get($primary, "400");
   }
   .cta--subheading {
     color: map-get($neutrals, "50");

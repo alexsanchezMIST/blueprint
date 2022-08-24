@@ -1,4 +1,8 @@
 ---
+import dotenv from "dotenv";
+dotenv.config();
+const URL = import.meta.env.BASE_URL;
+
 import { Icon } from "astro-icon";
 
 export interface Props {
@@ -6,25 +10,21 @@ export interface Props {
 }
 
 const { slug } = Astro.props;
+
+const baseURL = URL + `/${slug}`;
+const facebookURL = `https://www.facebook.com/sharer.php?u=${baseURL}`;
+const twitterURL = `https://twitter.com/intent/tweet?url=${baseURL}`;
+const linkedInURL = `https://www.linkedin.com/sharing/share-offsite/?url=${baseURL}`;
 ---
 
 <div class="share--wrapper">
-  <a
-    href="https://www.facebook.com/sharer.php?u={url}"
-    class="share--btn facebook"
-  >
+  <a href={facebookURL} class="share--btn facebook">
     <Icon pack="fa-brands" name="facebook" />Share to Facebook
   </a>
-  <a
-    href="https://twitter.com/intent/tweet?url={url}&text={title}&via={user_id}&hashtags={hash_tags}"
-    class="share--btn twitter"
-  >
+  <a href={twitterURL} class="share--btn twitter">
     <Icon pack="fa-brands" name="twitter" />Share to Twitter
   </a>
-  <a
-    href="https://www.linkedin.com/sharing/share-offsite/?url={url}"
-    class="share--btn linkedin"
-  >
+  <a href={linkedInURL} class="share--btn linkedin">
     <Icon pack="fa-brands" name="linkedin" />Share to LinkedIn
   </a>
 </div>
@@ -38,8 +38,8 @@ const { slug } = Astro.props;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-
-    @media screen and (min-width: map-get($breakpoints, "md")) {
+    margin-top: map-get($spacing, "600") @media screen and
+      (min-width: map-get($breakpoints, "md")) {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
