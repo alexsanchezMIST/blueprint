@@ -102,11 +102,9 @@ export async function getAllPosts() {
                 excerpt
                 slug
                 categories(first: 2) {
-                  edges {
-                    node {
-                      slug
-                      name
-                    }
+                  nodes {
+                    slug
+                    name
                   }
                 }
                 featuredImage {
@@ -265,12 +263,10 @@ export async function getAllCategories() {
   const data = await fetchAPI(`
     {
       categories(first: 100) {
-        edges {
-          node {
+          nodes {
             slug
             name
           }
-        }
       }
     }
   `);
