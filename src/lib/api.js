@@ -169,7 +169,6 @@ export async function getAllDownloads() {
             featuredImage {
               node {
                 altText
-                sourceUrl
               }
             }
             downloads {

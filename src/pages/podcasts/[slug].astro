@@ -1,14 +1,15 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Section from "../components/Section.astro";
-import Container from "../components/Container.astro";
-import Article from "../components/Article.astro";
-import CTA from "../components/CTA.astro";
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/Section.astro";
+import Container from "../../components/Container.astro";
+import Article from "../../components/Article.astro";
+import ShareButtons from "../../components/ShareButtons.astro";
+import CTA from "../../components/CTA.astro";
 
-import { getAllPosts, getPost } from "../lib/queries.js";
+import { getAllPodcasts, getPodcast } from "../../lib/queries.js";
 
 export async function getStaticPaths() {
-  const posts = await getAllPosts();
+  const posts = await getAllPodcasts();
   return posts.edges.map(({ node }) => {
     return {
       params: { slug: node.slug },
@@ -17,23 +18,23 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const post = await getPost(slug);
+const podcast = await getPodcast(slug);
 ---
 
 <Layout>
   <Section>
     <Container>
       <div class="post--heading--wrapper">
-        <h1 class="post--heading">{post.title}</h1>
-        {post.excerpt && <p class="post--excerpt">{post.excerpt}</p>}
+        <h1 class="post--heading">{podcast.title}</h1>
+        {podcast.excerpt && <p class="post--excerpt">{podcast.excerpt}</p>}
       </div>
     </Container>
   </Section>
-  {post.featuredImage && (
+  {podcast.featuredImage && (
     <section>
       <img
-        src={post.featuredImage.node.sourceUrl}
-        alt={post.featuredImage.node.altText}
+        src={podcast.featuredImage.node.sourceUrl}
+        alt={podcast.featuredImage.node.altText}
         class="post--thumbnail"
       />
     </section>
@@ -42,8 +43,8 @@ const post = await getPost(slug);
     <Container>
       <div class="flex--center">
         <div class="article--wrapper">
-          <Article set:html={post.content} />
-          <!--           <ShareButtons slug={post.slug} /> -->
+          <Article set:html={podcast.content} />
+          <ShareButtons slug={slug} />
         </div>
       </div>
     </Container>
@@ -52,7 +53,7 @@ const post = await getPost(slug);
 </Layout>
 
 <style lang="scss">
-  @import "../styles/variables.scss";
+  @import "../../styles/variables.scss";
 
   .post--heading--wrapper {
     width: min(100%, 48.125rem);

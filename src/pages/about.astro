@@ -7,8 +7,11 @@ import Button from "../components/Button.astro";
 import { Icon } from "astro-icon";
 import Article from "../components/Article.astro";
 import LogoCarousel from "../components/LogoCarousel.astro";
-import TestimonialWrapper from "../components/TestimonialWrapper.astro";
 import CTA from "../components/CTA.astro";
+
+import { getAboutPageContent } from "../lib/queries.js";
+
+const page = await getAboutPageContent();
 ---
 
 <Layout>
@@ -39,74 +42,10 @@ import CTA from "../components/CTA.astro";
   </Section>
   <Section>
     <Container>
-      <Article>
-        <h2>About Jeff Perry</h2>
-        <p>
-          As a software, mechanical, and manufacturing engineer, I designed and
-          developed a lot of products and processes.
-        </p>
-        <p>Now I build people.</p>
-        <p>
-          This is where my joy and professional satisfaction comes from—being a
-          part of helping others succeed and grow.
-        </p>
-        <p>
-          Every person is unique and has different challenges. I can't solve
-          every problem, but have been able to assist people in many ways
-          including:
-        </p>
-        <ul>
-          <li>
-            <strong>Finding increased user career.</strong> The grass is not always
-            greener on the other side, but sometimes it is. We can explore the "stay
-            or go" question and help you be in a better spot to succeed either way.
-          </li>
-          <li>
-            <strong>Dealing with unemployment or underemployment.</strong> You are
-            a solid professional with skills to bring to the table that aren't being
-            put to use. Let's change that together.
-          </li>
-          <li>
-            <strong
-              >Getting clarity and exploring new career possibilities.
-            </strong> Engineers are versatile and have many directions they could
-            take their careers. Let's get clear on what's truly important to you
-            so you can create a career you love.
-          </li>
-          <li>
-            <strong>Leadership and personal development.</strong> Starting from a
-            foundation of mindsets, we can work together to change how you see yourself
-            and the people around you, building critical leadership skills along
-            the way.
-          </li>
-        </ul>
-        <p>
-          For years, I have had the pleasure of supporting engineers and
-          software pros from new grads to executives. Having been on the front
-          lines in the technical world, I have been able to map out the
-          necessary skills for becoming a quality leader in the field.
-        </p>
-        <p>
-          When you work with me as your coach, you work with someone who has
-          been where you are, and has the skills to get you where you want to
-          go.
-        </p>
-        <p>
-          I would love to learn about you and the challenges you face. Please
-          reach out to me on LinkedIn or email me at <a
-            href="mailto:jeff@morethan-engineering.com"
-            >jeff@morethan-engineering.com
-          </a>.
-        </p>
-      </Article>
+      <Article set:html={page.content} />
     </Container>
   </Section>
   <LogoCarousel />
-  <Section>
-    <Container>
-      <TestimonialWrapper />
-    </Container>
-  </Section>
   <CTA />
 </Layout>
 

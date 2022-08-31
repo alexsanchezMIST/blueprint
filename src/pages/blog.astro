@@ -6,8 +6,10 @@ import Search from "../components/Search.astro";
 import PostCard from "../components/PostCard.astro";
 import CTA from "../components/CTA.astro";
 
-import { getAllPosts } from "../lib/api.js";
-const posts = await getAllPosts();
+import { getAllPosts } from "../lib/api";
+
+const data = await getAllPosts();
+const posts = data.edges;
 ---
 
 <Layout>
@@ -29,16 +31,9 @@ const posts = await getAllPosts();
   <Section>
     <Container>
       <div class="post--card--wrapper">
-        <!-- {posts.edges.map((post) => (
-          <PostCard
-            href={`/${post.node.slug}`}
-            categories={post.node.categories.edges.node}
-            title={post.node.title}
-            excerpt={post.node.excerpt}
-            src={post.node.featuredImage.node.sourceUrl}
-            alt={post.node.featuredImage.node.altText}
-          />
-        ))} -->
+        {posts.map((post) => (
+          <PostCard href={post.node.slug} title={post.node.title} />
+        ))}
       </div>
     </Container>
   </Section>

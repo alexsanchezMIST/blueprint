@@ -1,0 +1,135 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Section from "../../components/Section.astro";
+import Container from "../../components/Container.astro";
+import PostCard from "../../components/PostCard.astro";
+
+import { getPodcastsPageContent, getAllPodcasts } from "../../lib/queries.js";
+
+export async function getStaticPaths({ paginate }) {
+  const podcasts = await getAllPodcasts();
+  const allPodcasts = podcasts.edges;
+
+  return paginate(allPodcasts, { pageSize: 9 });
+}
+
+const podcastsPage = await getPodcastsPageContent();
+
+const { page } = Astro.props;
+---
+
+<Layout>
+  <Section>
+    <Container>
+      <div class="heading--wrapper">
+        <h1 class="blog--heading">
+          Listen to the <span class="span">podcasts</span>
+        </h1>
+        <div class="blog--subheading" set:html={podcastsPage.content}></div>
+      </div>
+    </Container>
+  </Section>
+  <Section>
+    <Container>
+      <div class="post--card--wrapper">
+        {page.data.map((podcast) => (
+          <PostCard
+            href={`/podcasts/${podcast.node.slug}`}
+            src="https://morethaneng.com/wp-content/uploads/2022/07/TechLead-1.png"
+            title={podcast.node.title}
+            excerpt={podcast.node.excerpt}
+          />
+        ))}
+      </div>
+      <div class="pagination--wrapper py-6">
+        {page.url.prev ? (
+          <a href={page.url.prev || "#"} class="pagination--previous">
+            ← Previous
+          </a>
+        ) : null}
+        {page.url.next ? (
+          <a href={page.url.next || "#"} class="pagination--next">
+            Next →
+          </a>
+        ) : null}
+      </div>
+    </Container>
+  </Section>
+</Layout>
+
+<style lang="scss">
+  @import "../../styles/variables.scss";
+
+  .blog--heading {
+    margin-bottom: map-get($spacing, "400");
+  }
+
+  .blog--subheading {
+    margin-bottom: map-get($spacing, "600");
+  }
+
+  .heading--wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: column;
+    align-items: column;
+    width: min(100%, 48.125rem);
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .post--card--wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-rows: repeat(9, minmax(0, 1fr));
+    gap: map-get($spacing, "400");
+
+    @media screen and (min-width: map-get($breakpoints, "md")) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-rows: repeat(5, minmax(0, 1fr));
+    }
+
+    @media screen and (min-width: map-get($breakpoints, "lg")) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .pagination--wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: map-get($spacing, "400");
+  }
+
+  .pagination--previous,
+  .pagination--next {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-block: map-get($spacing, "300");
+    padding-inline: map-get($spacing, "400");
+    font-size: map-get($font-size, "300");
+    font-weight: 500;
+    line-height: 1;
+    color: map-get($secondary, "500");
+    background-color: $white;
+    border: 1px solid map-get($secondary, "500");
+    border-radius: 0.125rem;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: map-get($secondary, "500");
+      color: $white;
+    }
+
+    &:active {
+      border-color: map-get($secondary, "600");
+      background-color: map-get($secondary, "600");
+      color: $white;
+    }
+  }
+</style>

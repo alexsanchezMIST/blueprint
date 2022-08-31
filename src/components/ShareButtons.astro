@@ -1,20 +1,17 @@
 ---
-import dotenv from "dotenv";
-dotenv.config();
-const URL = import.meta.env.BASE_URL;
-
 import { Icon } from "astro-icon";
 
 export interface Props {
-  slug?: string;
+  slug?: any;
 }
 
 const { slug } = Astro.props;
 
-const baseURL = URL + `/${slug}`;
-const facebookURL = `https://www.facebook.com/sharer.php?u=${baseURL}`;
-const twitterURL = `https://twitter.com/intent/tweet?url=${baseURL}`;
-const linkedInURL = `https://www.linkedin.com/sharing/share-offsite/?url=${baseURL}`;
+const URLstring = "https://morethaneng.com/posts/";
+
+const facebookURL = `https://www.facebook.com/share.php?u=${URLstring}${slug}`;
+const twitterURL = `https://twitter.com/share?&url=${URLstring}${slug}`;
+const linkedInURL = `https://www.linkedin.com/shareArticle?mini=true&url=${URLstring}${slug}`;
 ---
 
 <div class="share--wrapper">

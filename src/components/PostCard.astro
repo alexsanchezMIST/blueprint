@@ -12,15 +12,11 @@ const { href, src, alt, title, categories, excerpt } = Astro.props;
 ---
 
 <a href={href} class="post--card">
-  <img src={src} alt={alt} class="post--thumbnail" />
+  {src && <img src={src} alt={alt} class="post--thumbnail" />}
   <div class="post--card--bottom">
-    {categories.edges.node.map((cat) => {
-      ;<a href={cat.slug} class="post--card--badge">
-        {cat.name}
-      </a>
-    })}
-    <h4 class="post--card--heading">{title}</h4>
-    <p class="post--card--excerpt" set:html={excerpt.slice(0, 150) + "..."}></p>
+    {categories && <div>{categories}</div>}
+    <h5 class="post--card--heading">{title}</h5>
+    <div class="post--card--excerpt" set:html={excerpt}></div>
   </div>
 </a>
 
@@ -28,7 +24,7 @@ const { href, src, alt, title, categories, excerpt } = Astro.props;
   @import "../styles/variables.scss";
 
   .post--card {
-    padding: map-get($spacing, "200");
+    padding: map-get($spacing, "400");
     border: 1px solid map-get($neutrals, "100");
     border-radius: 0.25rem;
     background-color: $white;
@@ -78,7 +74,7 @@ const { href, src, alt, title, categories, excerpt } = Astro.props;
     transition: color 0.3s;
   }
 
-  .post--card--excerpt {
+  .post--card--excerpt :global(p) {
     font-size: map-get($font-size, "300");
   }
 </style>

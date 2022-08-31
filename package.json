@@ -7,10 +7,14 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "astro": "astro",
     "lint:scss": "stylelint src/**/*.{astro,scss}"
   },
   "devDependencies": {
+    "@astrojs/alpinejs": "^0.1.1",
+    "@types/alpinejs": "^3.7.0",
     "@types/node": "^18.6.3",
+    "alpinejs": "^3.10.3",
     "astro": "^1.0.0-beta.59",
     "cypress": "^10.6.0",
     "dotenv": "^16.0.1",
