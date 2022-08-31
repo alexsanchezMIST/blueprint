@@ -14,7 +14,6 @@ const { href, src, alt, title, categories, excerpt } = Astro.props;
 <a href={href} class="post--card">
   {src && <img src={src} alt={alt} class="post--thumbnail" />}
   <div class="post--card--bottom">
-    {categories && <div>{categories}</div>}
     <h5 class="post--card--heading">{title}</h5>
     <div class="post--card--excerpt" set:html={excerpt}></div>
   </div>

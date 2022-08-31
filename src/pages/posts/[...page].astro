@@ -35,7 +35,6 @@ const blogPage = await getBlogPageContent();
         {page.data.map((post) => (
           <PostCard
             href={`/posts/${post.node.slug}`}
-            src={post.node.featuredImage.node.sourceUrl}
             title={post.node.title}
             excerpt={`${post.node.excerpt.slice(0, 120)}...`}
           />
