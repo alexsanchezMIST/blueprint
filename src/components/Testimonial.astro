@@ -2,14 +2,14 @@
 export interface Props {
   author?: string;
   title?: string;
-  body: string;
+  content: string;
 }
 
-const { author, title, body } = Astro.props as Props;
+const { author, title, content } = Astro.props as Props;
 ---
 
 <div class="testimonial">
-  <div class="testimonial--content">{body}</div>
+  <div class="testimonial--content" set:html={content}></div>
   <div class="testimonial--bottom">
     <h6 class="testimonial--author">{author}</h6>
     <p class="testimonial--title">{title}</p>

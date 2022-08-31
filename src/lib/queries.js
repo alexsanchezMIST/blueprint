@@ -185,3 +185,28 @@ export async function getPodcast(slug) {
 
   return data?.podcast;
 }
+
+/******************* 
+GET ALL TESTIMONIALS
+********************/
+
+export async function getAllTestimonials() {
+  const data = await fetchAPI(`
+  {
+    testimonials(first: 100) {
+      edges {
+        node {
+          id
+          content
+          testimonials {
+            author
+            title
+          }
+        }
+      }
+    }
+  }
+`);
+
+  return data?.testimonials;
+}

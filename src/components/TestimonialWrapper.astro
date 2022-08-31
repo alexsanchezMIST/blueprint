@@ -1,24 +1,74 @@
 ---
+import Section from "./Section.astro";
+import Container from "./Container.astro";
 import Testimonial from "./Testimonial.astro";
-
-import { getAllTestimonials } from "../lib/api.js";
+import { getAllTestimonials } from "../lib/queries.js";
 const testimonials = await getAllTestimonials();
-const featuredTestimonials = testimonials.edges.slice(0, 3);
+const featuredTestimonials = testimonials.edges;
 ---
 
-<div class="testimonial--wrapper">
-  {featuredTestimonials.map((testimonial) => (
-    <Testimonial
-      author={testimonial.node.testimonials.author}
-      title={testimonial.node.testimonials.title}
-      body={testimonial.node.content}
-    />
-  ))}
-</div>
+<script>
+  import Swiper, { Navigation, Pagination } from "swiper";
+  const swiper = new Swiper(".swiper", {
+    on: {
+      init: function () {
+        console.log("swiper initialized");
+      },
+    },
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 30,
+    autoHeight: true,
+    centerInsufficientSlides: true,
+    createElements: true,
+    scrollbar: {
+      el: ".swiper-scrollbar",
+    },
+    modules: [Navigation, Pagination],
+    breakpoints: {
+      640: {
+        slidesPerView: 2,
+        spaceBetween: 30,
+      },
+      1024: {
+        slidesPerView: 3,
+        grabCursor: true,
+      },
+    },
+  });
+</script>
+
+<Section>
+  <Container>
+    <div class="swiper">
+      <div class="testimonial--wrapper swiper-wrapper">
+        {featuredTestimonials.map((testimonial) => (
+          <div class="swiper-slide">
+            <Testimonial
+              author={testimonial.node.testimonials.author}
+              title={testimonial.node.testimonials.title}
+              content={testimonial.node.content}
+            />
+          </div>
+        ))}
+      </div>
+      <div class="swiper-scrollbar"></div>
+    </div>
+  </Container>
+</Section>
 
 <style lang="scss">
+  @import "swiper/scss";
+  @import "swiper/scss/navigation";
+  @import "swiper/scss/pagination";
   @import "../styles/variables.scss";
-  .testimonial--wrapper {
+
+  .swiper {
+    width: 100%;
+    height: 35rem;
+  }
+
+  /*   .testimonial--wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,5 +79,5 @@ const featuredTestimonials = testimonials.edges.slice(0, 3);
       flex-direction: row;
       align-items: stretch;
     }
-  }
+  } */
 </style>
