@@ -4,18 +4,21 @@ import Section from "../../components/Section.astro";
 import Container from "../../components/Container.astro";
 import PostCard from "../../components/PostCard.astro";
 
-import { getPodcastsPageContent, getAllPodcasts } from "../../lib/queries.js";
+import { getAllPostsByCategory } from "../../lib/queries.js";
 
 export async function getStaticPaths({ paginate }) {
-  const podcasts = await getAllPodcasts();
-  const allPodcasts = podcasts.edges;
+  const posts = await getAllPostsByCategory();
 
-  return paginate(allPodcasts, { pageSize: 9 });
+  return posts.edges.map(({ node }) => {
+    return {
+      params: { category: node.slug },
+    };
+  });
 }
 
-const podcastsPage = await getPodcastsPageContent();
-
+const { category } = Astro.params;
 const { page } = Astro.props;
+const categoryPosts = await getAllPostsByCategory(category);
 ---
 
 <Layout>
@@ -23,20 +26,22 @@ const { page } = Astro.props;
     <Container>
       <div class="heading--wrapper">
         <h1 class="blog--heading">
-          Listen to the <span class="span">podcasts</span>
+          Welcome to the <span class="span">categories</span>
         </h1>
-        <div class="blog--subheading" set:html={podcastsPage.content}></div>
+        <div class="blog--subheading">
+          Read all posts with the same category below.
+        </div>
       </div>
     </Container>
   </Section>
   <Section>
     <Container>
       <div class="post--card--wrapper">
-        {page.data.map((podcast) => (
+        {categoryPosts.edges.map((post) => (
           <PostCard
-            href={`/podcasts/${podcast.node.slug}`}
-            title={podcast.node.title}
-            excerpt={podcast.node.excerpt}
+            href={`/posts/${post.node.slug}`}
+            title={post.node.title}
+            excerpt={`${post.node.excerpt.slice(0, 120)}...`}
           />
         ))}
       </div>
@@ -63,7 +68,7 @@ const { page } = Astro.props;
     margin-bottom: map-get($spacing, "400");
   }
 
-  .blog--subheading {
+  .blog--subheading :global(p) {
     margin-bottom: map-get($spacing, "600");
   }
 

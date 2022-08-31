@@ -71,6 +71,22 @@ export async function getPodcastsPageContent() {
 }
 
 /******************* 
+GET RESOURCES PAGE CONTENT
+********************/
+
+export async function getResourcesPageContent() {
+  const data = await fetchAPI(`
+    {
+      page(id: "resources", idType: URI) {
+        title
+        content
+      }
+    }
+  `);
+  return data?.page;
+}
+
+/******************* 
 GET ALL POSTS
 ********************/
 
@@ -209,4 +225,83 @@ export async function getAllTestimonials() {
 `);
 
   return data?.testimonials;
+}
+
+/******************* 
+GET ALL DOWNLOADS
+********************/
+
+export async function getAllDownloads() {
+  const data = await fetchAPI(`
+  {
+    downloads(first: 100) {
+      edges {
+        node {
+          id
+          content
+          title
+          featuredImage {
+            node {
+              sourceUrl
+            }
+          }
+          downloads {
+            link
+          }
+        }
+      }
+    }
+  }
+`);
+
+  return data?.downloads;
+}
+
+/******************* 
+GET ALL CATEGORIES
+********************/
+
+export async function getAllCategories() {
+  const data = await fetchAPI(`
+    {
+      categories(first: 100) {
+        edges {
+          node {
+            slug
+            name
+          }
+        }
+      }
+    }
+  `);
+
+  return data?.categories;
+}
+
+/******************* 
+GET ALL POSTS BY CATEGORY
+********************/
+
+export async function getAllPostsByCategory(category) {
+  const data = await fetchAPI(`
+        {
+          posts(first: 1000, where: {categoryName: "${category}"} ) {
+            edges {
+              node {
+                id
+                title
+                content
+                excerpt
+                slug
+                featuredImage {
+                  node {
+                    sourceUrl
+                  }
+                }
+              }
+            }
+          }
+        }
+    `);
+  return data?.posts;
 }

@@ -14,7 +14,7 @@ const { title, body, href, img, alt } = Astro.props;
 ---
 
 <div class="download--card">
-  <img src={img} alt={alt} class="download--img" />
+  {img && <img src={img} alt={alt} class="download--img" />}
   <div class="download--right">
     <div class="download--badge">Download</div>
     <h3 class="download--heading">{title}</h3>

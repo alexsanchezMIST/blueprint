@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Section from "../../components/Section.astro";
 import Container from "../../components/Container.astro";
+import CategoriesWrapper from "../../components/CategoriesWrapper.astro";
 import PostCard from "../../components/PostCard.astro";
 
 import { getBlogPageContent, getAllPosts } from "../../lib/queries.js";
@@ -27,6 +28,7 @@ const blogPage = await getBlogPageContent();
         </h1>
         <div class="blog--subheading" set:html={blogPage.content}></div>
       </div>
+      <CategoriesWrapper />
     </Container>
   </Section>
   <Section>

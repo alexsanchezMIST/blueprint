@@ -1,0 +1,51 @@
+---
+import { getAllCategories } from "../lib/queries.js";
+
+const categories = await getAllCategories();
+---
+
+<div class="categories--wrapper">
+  {categories.edges.map((category) => (
+    <a
+      href={`/categories/${category.node.slug}`}
+      class="category"
+      set:html={category.node.name}
+    />
+  ))}
+</div>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+
+  .categories--wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: map-get($spacing, "300");
+  }
+
+  .category {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-block: map-get($spacing, "100");
+    padding-inline: map-get($spacing, "200");
+    background-color: $white;
+    border: 1px solid map-get($neutrals, "50");
+    border-radius: 0.125rem;
+    box-shadow: 0 1px 3px 0 rgba($black, 0.1), 0 1px 2px -1px rgba($black, 0.1);
+    font-weight: 500;
+    color: map-get($neutrals, "500");
+
+    &:hover {
+      border-color: map-get($secondary, "500");
+    }
+
+    &:active {
+      border-color: map-get($secondary, "600");
+    }
+  }
+</style>
