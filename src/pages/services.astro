@@ -5,6 +5,7 @@ import Container from "../components/Container.astro";
 import Columns from "../components/Columns.astro";
 import ButtonGroup from "../components/ButtonGroup.astro";
 import Button from "../components/Button.astro";
+import WhiteButton from "../components/WhiteButton.astro";
 import { Icon } from "astro-icon";
 import CardWrapper from "../components/CardWrapper.astro";
 import ServicesCard from "../components/ServicesCard.astro";
@@ -28,10 +29,10 @@ import CTA from "../components/CTA.astro";
             >
               <Icon pack="heroicons-solid" name="phone" slot="icon--left" />
             </Button>
-            <Button isOutlined="true" href="#career" label="Learn more">
+            <WhiteButton href="#career" label="Learn more">
               <Icon pack="heroicons-solid" name="arrow-right" slot="icon--right"
               />
-            </Button>
+            </WhiteButton>
           </ButtonGroup>
         </div>
         <div slot="second"></div>

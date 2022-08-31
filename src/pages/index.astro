@@ -5,6 +5,7 @@ import Container from "../components/Container.astro";
 import Columns from "../components/Columns.astro";
 import ButtonGroup from "../components/ButtonGroup.astro";
 import Button from "../components/Button.astro";
+import WhiteButton from "../components/WhiteButton.astro";
 import { Icon } from "astro-icon";
 import LogoCarousel from "../components/LogoCarousel.astro";
 import Article from "../components/Article.astro";
@@ -30,10 +31,10 @@ import CTA from "../components/CTA.astro";
             >
               <Icon pack="heroicons-solid" name="play" slot="icon--left" />
             </Button>
-            <Button isOutlined="true" href="#career" label="Learn more">
+            <WhiteButton href="#career" label="Learn more">
               <Icon pack="heroicons-solid" name="arrow-right" slot="icon--right"
               />
-            </Button>
+            </WhiteButton>
           </ButtonGroup>
         </div>
         <div slot="second"></div>
@@ -122,10 +123,10 @@ import CTA from "../components/CTA.astro";
             </p>
             <p>Sound interesting? Click the link below to learn more.</p>
           </div>
-          <Button isOutlined="true" href="/about" label="Learn more">
+          <WhiteButton href="/about" label="Learn more">
             <Icon pack="heroicons-solid" name="arrow-right" slot="icon--right"
             />
-          </Button>
+          </WhiteButton>
         </div>
         <div slot="second">
           <img src="/assets/jeff-perry-about.webp" alt="" class="about--img" />

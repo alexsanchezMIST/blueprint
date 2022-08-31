@@ -9,13 +9,13 @@ export interface Props {
 const { label, href, isBlank } = Astro.props as Props;
 ---
 
-<a class="btn" href={href} target={isBlank === "true" ? "_blank" : ""}
+<a class="btn--white" href={href} target={isBlank === "true" ? "_blank" : ""}
   ><slot name="icon--left"></slot>{label}<slot name="icon--right"></slot>
 </a>
 
 <style lang="scss">
   @import "../styles/variables.scss";
-  .btn {
+  .btn--white {
     display: inline-flex;
     flex-direction: row;
     justify-content: center;
@@ -23,28 +23,28 @@ const { label, href, isBlank } = Astro.props as Props;
     gap: map-get($spacing, "200");
     padding-block: map-get($spacing, "400");
     padding-inline: map-get($spacing, "500");
-    background-color: map-get($secondary, "500");
-    border: 1px solid transparent;
     border-radius: 0.25rem;
     cursor: pointer;
     font-size: map-get($font-size, "400");
     line-height: 1;
     font-weight: 500;
     text-align: center;
-    color: $white;
     white-space: no-wrap;
-    transition: background-color 0.3s ease-in-out;
+    background-color: $white;
+    border: 1px solid map-get($secondary, "500");
+    color: map-get($secondary, "500");
+    transition: all 0.3s ease-in-out;
 
     &:hover {
       background-color: map-get($secondary, "400");
+      border-color: map-get($secondary, "400");
+      color: $white;
     }
 
     &:active {
       background-color: map-get($secondary, "600");
-    }
-
-    & + & {
-      margin-left: map-get($spacing, "300");
+      border-color: map-get($secondary, "600");
+      color: $white;
     }
   }
 </style>
