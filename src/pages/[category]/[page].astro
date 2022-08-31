@@ -4,7 +4,11 @@ import Section from "../../components/Section.astro";
 import Container from "../../components/Container.astro";
 import PostCard from "../../components/PostCard.astro";
 
-import { getAllCategories, getAllPosts } from "../../lib/queries.js";
+import {
+  getAllCategories,
+  getAllPosts,
+  getAllPostsByCategory,
+} from "../../lib/queries.js";
 
 export async function getStaticPaths({ paginate }) {
   const categories = await getAllCategories();
@@ -22,15 +26,10 @@ export async function getStaticPaths({ paginate }) {
 }
 
 const { page } = Astro.props;
-const params = Astro.params;
+const { category } = Astro.params;
+
+const categoryPosts = await getAllPostsByCategory(category);
 ---
-
-<script>
-  import { getAllCategories } from "../../lib/queries.js";
-
-  const names = await getAllCategories();
-  console.log(names);
-</script>
 
 <Layout>
   <Section>
@@ -48,7 +47,7 @@ const params = Astro.params;
   <Section>
     <Container>
       <div class="post--card--wrapper">
-        {page.data.map((post) => (
+        {categoryPosts.edges.map((post) => (
           <PostCard
             href={`/posts/${post.node.slug}`}
             title={post.node.title}
