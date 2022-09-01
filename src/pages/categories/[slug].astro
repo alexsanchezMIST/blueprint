@@ -10,7 +10,7 @@ import {
   getAllPostsByCategory,
 } from "../../lib/queries.js";
 
-export async function getStaticPaths({ paginate }) {
+export async function getStaticPaths() {
   const categories = await getAllCategories();
   const posts = await getAllPosts();
 
@@ -18,17 +18,19 @@ export async function getStaticPaths({ paginate }) {
     const filteredPosts = posts.edges.filter(
       (post) => post.node.categories.name === category.name
     );
-    return paginate(filteredPosts, {
-      params: { category: category.name },
-      pageSize: 9,
-    });
+    return {
+      params: { slug: category.slug },
+      props: {
+        posts: filteredPosts,
+        category,
+      },
+    };
   });
 }
 
-const { page } = Astro.props;
-const { category } = Astro.params;
+const { slug } = Astro.params;
 
-const categoryPosts = await getAllPostsByCategory(category);
+const categoryPosts = await getAllPostsByCategory(slug);
 ---
 
 <Layout>
@@ -36,10 +38,10 @@ const categoryPosts = await getAllPostsByCategory(category);
     <Container>
       <div class="heading--wrapper">
         <h1 class="blog--heading">
-          Welcome to the <span class="span">categories</span>
+          More posts about <span class="span">{slug}</span>
         </h1>
         <div class="blog--subheading">
-          Read all posts with the same category below.
+          Read similar posts in the same category below.
         </div>
       </div>
     </Container>
@@ -55,18 +57,7 @@ const categoryPosts = await getAllPostsByCategory(category);
           />
         ))}
       </div>
-      <div class="pagination--wrapper py-6">
-        {page.url.prev ? (
-          <a href={page.url.prev || "#"} class="pagination--previous">
-            ← Previous
-          </a>
-        ) : null}
-        {page.url.next ? (
-          <a href={page.url.next || "#"} class="pagination--next">
-            Next →
-          </a>
-        ) : null}
-      </div>
+      <div class="pagination--wrapper py-6"></div>
     </Container>
   </Section>
 </Layout>

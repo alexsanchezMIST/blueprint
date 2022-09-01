@@ -5,11 +5,11 @@ const categories = await getAllCategories();
 ---
 
 <div class="categories--wrapper">
-  {categories.edges.map((category) => (
+  {categories.nodes.map((category) => (
     <a
-      href={`/categories/${category.node.slug}`}
+      href={`/categories/${category.slug}`}
       class="category"
-      set:html={category.node.name}
+      set:html={category.name}
     />
   ))}
 </div>

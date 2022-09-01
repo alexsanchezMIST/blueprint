@@ -281,7 +281,7 @@ GET ALL POSTS BY CATEGORY
 export async function getAllPostsByCategory(category) {
   const data = await fetchAPI(`
         {
-          posts(first: 1000, where: {categoryName: "${category}"} ) {
+          posts(first: 9, where: {categoryName: "${category}"} ) {
             edges {
               node {
                 id
