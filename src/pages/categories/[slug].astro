@@ -51,6 +51,7 @@ const categoryPosts = await getAllPostsByCategory(slug);
       <div class="post--card--wrapper">
         {categoryPosts.edges.map((post) => (
           <PostCard
+            src={post.node.featuredImage.node.sourceUrl}
             href={`/posts/${post.node.slug}`}
             title={post.node.title}
             excerpt={`${post.node.excerpt.slice(0, 120)}...`}
