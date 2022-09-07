@@ -32,13 +32,16 @@ const { page } = Astro.props;
   <Section>
     <Container>
       <div class="post--card--wrapper">
-        {page.data.map((podcast) => (
-          <PostCard
-            href={`/podcasts/${podcast.node.slug}`}
-            title={podcast.node.title}
-            excerpt={podcast.node.excerpt}
-          />
-        ))}
+        {page.data.map(
+          (podcast) =>
+            podcast.node.featuredImage && (
+              <PostCard
+                src={podcast.node.featuredImage.node.sourceUrl}
+                href={`/posts/${podcast.node.slug}`}
+                title={podcast.node.title}
+              />
+            )
+        )}
       </div>
       <div class="pagination--wrapper py-6">
         {page.url.prev ? (

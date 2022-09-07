@@ -34,14 +34,17 @@ const blogPage = await getBlogPageContent();
   <Section>
     <Container>
       <div class="post--card--wrapper">
-        {page.data.map((post) => (
-          <PostCard
-            src={post.node.featuredImage.node.sourceUrl}
-            href={`/posts/${post.node.slug}`}
-            title={post.node.title}
-            excerpt={`${post.node.excerpt.slice(0, 120)}...`}
-          />
-        ))}
+        {page.data.map(
+          (post) =>
+            post.node.featuredImage && (
+              <PostCard
+                src={post.node.featuredImage.node.sourceUrl}
+                href={`/posts/${post.node.slug}`}
+                title={post.node.title}
+                excerpt={`${post.node.excerpt.slice(0, 120)}...`}
+              />
+            )
+        )}
       </div>
       <div class="pagination--wrapper py-6">
         {page.url.prev ? (

@@ -49,13 +49,17 @@ const categoryPosts = await getAllPostsByCategory(slug);
   <Section>
     <Container>
       <div class="post--card--wrapper">
-        {categoryPosts.edges.map((post) => (
-          <PostCard
-            href={`/posts/${post.node.slug}`}
-            title={post.node.title}
-            excerpt={`${post.node.excerpt.slice(0, 120)}...`}
-          />
-        ))}
+        {categoryPosts.edges.map(
+          (post) =>
+            post.node.featuredImage && (
+              <PostCard
+                src={post.node.featuredImage.node.sourceUrl}
+                href={`/posts/${post.node.slug}`}
+                title={post.node.title}
+                excerpt={`${post.node.excerpt.slice(0, 120)}...`}
+              />
+            )
+        )}
       </div>
       <div class="pagination--wrapper py-6"></div>
     </Container>
