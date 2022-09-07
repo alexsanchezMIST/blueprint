@@ -37,7 +37,7 @@ const { page } = Astro.props;
             podcast.node.featuredImage && (
               <PostCard
                 src={podcast.node.featuredImage.node.sourceUrl}
-                href={`/posts/${podcast.node.slug}`}
+                href={`/podcasts/${podcast.node.slug}`}
                 title={podcast.node.title}
               />
             )
