@@ -6,7 +6,7 @@ import Search from "../components/Search.astro";
 import PostCard from "../components/PostCard.astro";
 import CTA from "../components/CTA.astro";
 
-import { getAllPosts } from "../lib/api";
+import { getAllPosts } from "../lib/queries";
 
 const data = await getAllPosts();
 const posts = data.edges;
