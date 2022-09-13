@@ -87,6 +87,38 @@ export async function getResourcesPageContent() {
 }
 
 /******************* 
+GET PRIVACY POLICY PAGE CONTENT
+********************/
+
+export async function getPrivacyPolicyPageContent() {
+  const data = await fetchAPI(`
+    {
+      page(id: "privacy-policy", idType: URI) {
+        title
+        content
+      }
+    }
+  `);
+  return data?.page;
+}
+
+/******************* 
+GET TERMS PAGE CONTENT
+********************/
+
+export async function getTermsPageContent() {
+  const data = await fetchAPI(`
+    {
+      page(id: "terms-and-conditions", idType: URI) {
+        title
+        content
+      }
+    }
+  `);
+  return data?.page;
+}
+
+/******************* 
 GET ALL POSTS
 ********************/
 

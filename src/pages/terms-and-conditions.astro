@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import Container from "../components/Container.astro";
+import Article from "../components/Article.astro";
+import { getTermsPageContent } from "../lib/queries";
+
+const page = await getTermsPageContent();
+---
+
+<Layout>
+  <Section>
+    <Container>
+      <h1>Terms and Conditions</h1>
+    </Container>
+  </Section>
+  <Section>
+    <Container>
+      <Article set:html={page.content} />
+    </Container>
+  </Section>
+</Layout>
