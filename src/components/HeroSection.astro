@@ -1,0 +1,111 @@
+---
+import Section from "./Section.astro";
+import Container from "./Container.astro";
+import Columns from "./Columns.astro";
+import ButtonGroup from "./ButtonGroup.astro";
+import Button from "./Button.astro";
+import WhiteButton from "./WhiteButton.astro";
+import { Icon } from "astro-icon";
+
+import { getHomePageContent } from "../lib/queries";
+const data = await getHomePageContent();
+---
+
+<Section>
+  <Container>
+    <Columns>
+      <div slot="first">
+        <p class="eyebrow">{data.heroSection.heroSection.tagline}</p>
+        <h1 class="hero--heading">
+          {data.heroSection.heroSection.heading}
+        </h1>
+        <ButtonGroup>
+          <Button
+            href={data.heroSection.heroSection.buttonLink}
+            isBlank="true"
+            label={data.heroSection.heroSection.buttonText}
+          >
+            <Icon pack="heroicons-solid" name="play" slot="icon--left" />
+          </Button>
+          <WhiteButton href="#career" label="Learn more">
+            <Icon pack="heroicons-solid" name="arrow-right" slot="icon--right"
+            />
+          </WhiteButton>
+        </ButtonGroup>
+      </div>
+      <div slot="second"></div>
+    </Columns>
+  </Container>
+  <div class="section--wrapper">
+    <img src="/assets/jeff-perry-cutout.webp" alt="" class="hero--cutout" />
+    <img src="/assets/background-icons.svg" alt="" class="hero--background" />
+  </div>
+</Section>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+  :global(.eyebrow) {
+    margin-bottom: map-get($spacing, "600");
+    font-weight: 500;
+  }
+
+  [astro-icon] {
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .section--wrapper {
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: map-get($breakpoints, "xxl");
+    height: 100%;
+    margin-inline: auto;
+  }
+
+  .hero--cutout {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    right: map-get($spacing-pairs, "from-400-to-900");
+    bottom: 0;
+    width: auto;
+    height: 35rem;
+
+    @media screen and (min-width: map-get($breakpoints, "lg")) {
+      display: block;
+    }
+  }
+
+  .hero--background {
+    display: none;
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: 100%;
+    opacity: 0.75;
+
+    @media screen and (min-width: map-get($breakpoints, "lg")) {
+      display: block;
+    }
+  }
+
+  .hero--heading {
+    line-height: 1.125;
+    margin-bottom: map-get($spacing, "600");
+  }
+
+  :global(.span) {
+    padding: 0.25rem 1rem;
+    background-color: map-get($primary, "500");
+    color: white;
+  }
+</style>

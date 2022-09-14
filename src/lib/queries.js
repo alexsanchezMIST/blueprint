@@ -23,6 +23,28 @@ async function fetchAPI(query, { variables } = {}) {
 }
 
 /******************* 
+GET HOME PAGE CONTENT
+********************/
+
+export async function getHomePageContent() {
+  const data = await fetchAPI(`
+    {
+      page(id: "home", idType: URI) {
+        heroSection {
+          heroSection {
+            tagline
+            heading
+            buttonText
+            buttonLink
+          }
+        }
+      }
+    }
+  `);
+  return data?.page;
+}
+
+/******************* 
 GET ABOUT PAGE CONTENT
 ********************/
 
@@ -304,6 +326,33 @@ export async function getAllCategories() {
   `);
 
   return data?.categories;
+}
+
+/******************* 
+GET ALL SERVICES
+********************/
+
+export async function getAllServices() {
+  const data = await fetchAPI(`
+    {
+      services(first: 10) {
+        edges {
+          node {
+            title
+            content
+            excerpt
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  return data?.services;
 }
 
 /******************* 

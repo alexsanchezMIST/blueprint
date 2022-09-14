@@ -5,18 +5,17 @@ import { Icon } from "astro-icon";
 export interface Props {
   title: string;
   src?: string;
+  content?: string;
 }
 
-const { title, src } = Astro.props as Props;
+const { title, src, content } = Astro.props as Props;
 ---
 
 <div class="services--card">
   <img src={src} alt="" class="services--card--image" />
   <div class="services--card--bottom">
     <h3 class="services--card--title">{title}</h3>
-    <div class="services--description--wrapper">
-      <slot name="description"></slot>
-    </div>
+    <div class="services--description--wrapper" set:html={content}></div>
     <Button
       href="https://go.oncehub.com/JeffPerryIntroCall"
       label="Book a call"

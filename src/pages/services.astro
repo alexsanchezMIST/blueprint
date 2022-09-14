@@ -10,6 +10,9 @@ import { Icon } from "astro-icon";
 import CardWrapper from "../components/CardWrapper.astro";
 import ServicesCard from "../components/ServicesCard.astro";
 import CTA from "../components/CTA.astro";
+import { getAllServices } from "../lib/queries";
+
+const services = await getAllServices();
 ---
 
 <Layout>
@@ -54,99 +57,16 @@ import CTA from "../components/CTA.astro";
   <Section>
     <Container>
       <div id="career-development-coaching" class="anchor"></div>
-      <ServicesCard
-        src="/assets/services-career.webp"
-        title="Career development coaching"
-      >
-        <div slot="description" class="services--description">
-          <p>
-            It's time to develop skills beyond the technical realm through a
-            personalized coaching approach. Let me guide you through your next
-            big transition with more clarity, speed, and purpose.
-          </p>
-          <p>
-            What we work on is customized to you, but can include: career
-            planning, leadership development, communication training, mindset
-            improvement, LinkedIn/resume writing, networking strategies,
-            interview preparation, compensation negotiation, and more!
-          </p>
-          <p>
-            Put simply—if you have a career canyon you need to cross, I can
-            build the bridge with you.
-          </p>
-        </div>
-      </ServicesCard>
-      <div id="leadership-coaching" class="anchor"></div>
-      <ServicesCard
-        src="/assets/services-leadership.webp"
-        title="Leadership coaching"
-      >
-        <div slot="description" class="services--description">
-          <p>
-            It's time to develop skills beyond the technical realm through a
-            personalized coaching approach. Let me guide you through your next
-            big transition with more clarity, speed, and purpose.
-          </p>
-          <p>
-            What we work on is customized to you, but can include: career
-            planning, leadership development, communication training, mindset
-            improvement, LinkedIn/resume writing, networking strategies,
-            interview preparation, compensation negotiation, and more!
-          </p>
-          <p>
-            Put simply—if you have a career canyon you need to cross, I can
-            build the bridge with you.
-          </p>
-        </div>
-      </ServicesCard>
-      <div id="speaking" class="anchor"></div>
-      <ServicesCard src="/assets/services-speaking.webp" title="Speaking">
-        <div slot="description" class="services--description">
-          <p>
-            Engineers and technical professionals need more than just strong
-            technical skills to succeed in today's workforce. You know this.
-          </p>
-          <p>
-            Workshops and presentations can be a great way to bring important
-            and life-changing ideas to a group or team. Each event uses a blend
-            of presentation, examples, participation, and a personal touch to
-            deliver a memorable experience with actionable learning.
-          </p>
-          <p>
-            Sessions can be delivered and adapted to various groups and
-            situations.
-          </p>
-          <p>
-            Workshops can be delivered as standalone events with additional
-            coaching/facilitation services (recommended). Time ranges represent
-            appropriate adaptations that can be made, but can drastically change
-            the workshop scope, depth, and deliverables.
-          </p>
-        </div>
-      </ServicesCard>
-      <div id="business-consulting" class="anchor"></div>
-      <ServicesCard
-        src="/assets/services-consulting.webp"
-        title="Business consulting"
-      >
-        <div slot="description" class="services--description">
-          <p>
-            It's time to develop skills beyond the technical realm through a
-            personalized coaching approach. Let me guide you through your next
-            big transition with more clarity, speed, and purpose.
-          </p>
-          <p>
-            What we work on is customized to you, but can include: career
-            planning, leadership development, communication training, mindset
-            improvement, LinkedIn/resume writing, networking strategies,
-            interview preparation, compensation negotiation, and more!
-          </p>
-          <p>
-            Put simply—if you have a career canyon you need to cross, I can
-            build the bridge with you.
-          </p>
-        </div>
-      </ServicesCard>
+      {services.edges.map(
+        (service) =>
+          service.node.featuredImage && (
+            <ServicesCard
+              src={service.node.featuredImage.node.sourceUrl}
+              title={service.node.title}
+              content={service.node.content}
+            />
+          )
+      )}
     </Container>
   </Section>
   <CTA />

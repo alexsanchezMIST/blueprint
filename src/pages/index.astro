@@ -12,40 +12,11 @@ import Article from "../components/Article.astro";
 import CardWrapper from "../components/CardWrapper.astro";
 import TestimonialWrapper from "../components/TestimonialWrapper.astro";
 import CTA from "../components/CTA.astro";
+import HeroSection from "../components/HeroSection.astro";
 ---
 
 <Layout>
-  <Section>
-    <Container>
-      <Columns>
-        <div slot="first">
-          <p class="eyebrow">FREE Masterclass for engineers and tech workers</p>
-          <h1 class="hero--heading">
-            The <span class="span">4 Keys</span> to Intentional Engineering Career
-            Transitions
-          </h1>
-          <ButtonGroup>
-            <Button
-              href="https://www.engineeringcareeraccelerator.com"
-              isBlank="true"
-              label="Watch now"
-            >
-              <Icon pack="heroicons-solid" name="play" slot="icon--left" />
-            </Button>
-            <WhiteButton href="#career" label="Learn more">
-              <Icon pack="heroicons-solid" name="arrow-right" slot="icon--right"
-              />
-            </WhiteButton>
-          </ButtonGroup>
-        </div>
-        <div slot="second"></div>
-      </Columns>
-    </Container>
-    <div class="section--wrapper">
-      <img src="/assets/jeff-perry-cutout.webp" alt="" class="hero--cutout" />
-      <img src="/assets/background-icons.svg" alt="" class="hero--background" />
-    </div>
-  </Section>
+  <HeroSection />
   <LogoCarousel />
   <Section>
     <div id="career" class="career--anchor"></div>
