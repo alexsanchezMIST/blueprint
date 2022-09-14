@@ -3,24 +3,45 @@ import Section from "./Section.astro";
 import Container from "./Container.astro";
 ---
 
+<script>
+  import Swiper, { Autoplay } from "swiper";
+  const swiper = new Swiper(".swiper--scroll", {
+    modules: [Autoplay],
+    autoplay: {
+      delay: 1000,
+    },
+    allowTouchMove: false,
+    loop: true,
+    loopedSlides: 11,
+    loopFillGroupWithBlank: true,
+    slidesPerView: "auto",
+    spaceBetween: 120,
+  });
+</script>
+
 <Section isSmall="true">
   <div class="rule--top"></div>
   <Container>
     <h5>Clients are building their careers at top companies like:</h5>
   </Container>
-  <div class="carousel">
-    <div class="logo-wrapper scroll-left">
-      <img src="/assets/blue-origin-logo.svg" alt="" class="logo" />
-      <img src="/assets/amazon-logo.svg" alt="" class="logo" />
-      <img src="/assets/amway-logo.svg" alt="" class="logo" />
-      <img src="/assets/bbt-logo.svg" alt="" class="logo" />
-      <img src="/assets/boeing-logo.svg" alt="" class="logo" />
-      <img src="/assets/meta-logo.svg" alt="" class="logo" />
-      <img src="/assets/micron-logo.svg" alt="" class="logo" />
-      <img src="/assets/microsoft-logo.svg" alt="" class="logo" />
-      <img src="/assets/nike-logo.svg" alt="" class="logo" />
-      <img src="/assets/northrop-grumman-logo.svg" alt="" class="logo" />
-      <img src="/assets/t-mobile-logo.svg" alt="" class="logo" />
+  <div class="carousel swiper--scroll">
+    <div class="logo-wrapper swiper-wrapper">
+      <img src="/assets/blue-origin-logo.svg" alt="" class="logo swiper-slide"
+      />
+      <img src="/assets/amazon-logo.svg" alt="" class="logo swiper-slide" />
+      <img src="/assets/amway-logo.svg" alt="" class="logo swiper-slide" />
+      <img src="/assets/bbt-logo.svg" alt="" class="logo swiper-slide" />
+      <img src="/assets/boeing-logo.svg" alt="" class="logo swiper-slide" />
+      <img src="/assets/meta-logo.svg" alt="" class="logo swiper-slide" />
+      <img src="/assets/micron-logo.svg" alt="" class="logo swiper-slide" />
+      <img src="/assets/microsoft-logo.svg" alt="" class="logo swiper-slide" />
+      <img src="/assets/nike-logo.svg" alt="" class="logo swiper-slide" />
+      <img
+        src="/assets/northrop-grumman-logo.svg"
+        alt=""
+        class="logo swiper-slide"
+      />
+      <img src="/assets/t-mobile-logo.svg" alt="" class="logo swiper-slide" />
     </div>
   </div>
   <div class="rule--bottom"></div>
@@ -28,7 +49,8 @@ import Container from "./Container.astro";
 
 <style lang="scss">
   @import "../styles/variables.scss";
-  @import "../styles/keyframes.scss";
+  @import "swiper/scss";
+  @import "swiper/scss/autoplay";
 
   .rule--top,
   .rule--bottom {
@@ -50,7 +72,7 @@ import Container from "./Container.astro";
     text-align: center;
   }
   .carousel {
-    width: 100vw;
+    width: 100%;
     height: auto;
     margin-top: map-get($spacing, "600");
   }
@@ -64,7 +86,6 @@ import Container from "./Container.astro";
   .logo {
     width: auto;
     height: 2rem;
-    margin-inline: map-get($spacing, "600");
     opacity: 0.6;
   }
 </style>
