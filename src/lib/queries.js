@@ -316,7 +316,7 @@ GET ALL CATEGORIES
 export async function getAllCategories() {
   const data = await fetchAPI(`
     {
-      categories(first: 100) {
+      categories(first: 100, where: {hideEmpty: true}) {
           nodes {
             slug
             name
