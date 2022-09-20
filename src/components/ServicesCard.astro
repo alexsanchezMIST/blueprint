@@ -70,4 +70,10 @@ const { title, src, content } = Astro.props as Props;
   .services--description--wrapper {
     margin-bottom: map-get($spacing, "600");
   }
+
+  .services--description--wrapper :global(p) {
+    &:not(last-of-type) {
+      margin-bottom: map-get($spacing, "400");
+    }
+  }
 </style>
