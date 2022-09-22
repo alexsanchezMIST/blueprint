@@ -8,14 +8,14 @@ import Container from "./Container.astro";
   const swiper = new Swiper(".swiper--scroll", {
     modules: [Autoplay],
     autoplay: {
-      delay: 1000,
+      delay: 3000,
     },
-    allowTouchMove: false,
+    centeredSlides: true,
     loop: true,
     loopedSlides: 11,
     loopFillGroupWithBlank: true,
+    slidesPerGroup: 3,
     slidesPerView: "auto",
-    spaceBetween: 120,
   });
 </script>
 
@@ -24,7 +24,7 @@ import Container from "./Container.astro";
   <Container>
     <h5>Clients are building their careers at top companies like:</h5>
   </Container>
-  <div class="carousel swiper--scroll">
+  <div class="carousel swiper--scroll swiper-no-swiping">
     <div class="logo-wrapper swiper-wrapper">
       <img src="/assets/blue-origin-logo.svg" alt="" class="logo swiper-slide"
       />
@@ -86,6 +86,7 @@ import Container from "./Container.astro";
   .logo {
     width: auto;
     height: 2rem;
+    margin-inline: map-get($spacing, "600");
     opacity: 0.6;
   }
 </style>
