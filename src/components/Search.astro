@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon";
 ---
 
-<form action="#" class="search--form">
+<form action="#" class="search--form is-hidden">
   <label for="search">Search all posts</label>
   <div class="input--wrapper">
     <input type="search" name="search" id="search" placeholder="Search ..." />
@@ -19,6 +19,8 @@ import { Icon } from "astro-icon";
     width: min(100%, 35.625rem);
     height: auto;
     margin-inline: auto;
+    outline: 2px solid rgba(map-get($secondary, "500"), 0.5);
+    border-radius: 0.125rem;
   }
 
   label {
