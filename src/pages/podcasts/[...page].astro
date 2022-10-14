@@ -33,6 +33,25 @@ const { page } = Astro.props;
   </Section>
   <Section>
     <Container>
+      <div class="pagination--wrapper py-6">
+        {page.url.prev ? (
+          <a href={page.url.prev || "#"} class="pagination--previous">
+            ← Previous
+          </a>
+        ) : null}
+        <div class="pages--wrapper">
+          <a href="/posts" class="pages--link">1</a>
+          <p>...</p>
+          <a href={`/posts/${page.lastPage}/`} class="pages--link"
+            >{page.lastPage}
+          </a>
+        </div>
+        {page.url.next ? (
+          <a href={page.url.next || "#"} class="pagination--next">
+            Next →
+          </a>
+        ) : null}
+      </div>
       <div class="post--card--wrapper">
         {page.data.map(
           (podcast) =>
@@ -51,6 +70,13 @@ const { page } = Astro.props;
             ← Previous
           </a>
         ) : null}
+        <div class="pages--wrapper">
+          <a href="/posts" class="pages--link">1</a>
+          <p>...</p>
+          <a href={`/posts/${page.lastPage}/`} class="pages--link"
+            >{page.lastPage}
+          </a>
+        </div>
         {page.url.next ? (
           <a href={page.url.next || "#"} class="pagination--next">
             Next →
@@ -134,6 +160,26 @@ const { page } = Astro.props;
       border-color: map-get($secondary, "600");
       background-color: map-get($secondary, "600");
       color: $white;
+    }
+  }
+
+  .pages--wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: map-get($spacing, "600");
+  }
+
+  .pages--link {
+    font-size: map-get($font-size, "300");
+    line-height: 1;
+    font-weight: 500;
+    color: map-get($neutrals, "400");
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: map-get($secondary, "500");
     }
   }
 </style>

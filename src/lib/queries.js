@@ -175,6 +175,40 @@ export async function getAllPosts() {
 }
 
 /******************* 
+GET ALL POSTS BY SEARCH
+********************/
+
+export async function getAllPostsBySearch(keyword) {
+  const data = await fetchAPI(`
+    {
+      posts(first: 9, where: {search: "${keyword}"}) {
+        edges {
+          node {
+            id
+            title
+            content
+            excerpt
+            slug
+            categories(first: 2) {
+              nodes {
+                slug
+                namee
+              }
+            }
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+  return data?.posts;
+}
+
+/******************* 
 GET SINGLE POST
 ********************/
 
