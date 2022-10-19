@@ -1,0 +1,82 @@
+---
+const { page } = Astro.props;
+---
+
+<div class="pagination--wrapper py-6">
+  {page.url.prev ? (
+    <a href={page.url.prev || "#"} class="pagination--previous">
+      ← Previous
+    </a>
+  ) : null}
+  <div class="pages--wrapper">
+    <a href="/posts" class="pages--link">1</a>
+    <p>...</p>
+    <a href={`/posts/${page.lastPage}/`} class="pages--link">{page.lastPage}</a>
+  </div>
+  {page.url.next ? (
+    <a href={page.url.next || "#"} class="pagination--next">
+      Next →
+    </a>
+  ) : null}
+</div>
+
+<style lang="scss">
+  @import "../styles/variables.scss";
+  .pagination--wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: map-get($spacing, "400");
+  }
+
+  .pagination--previous,
+  .pagination--next {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-block: map-get($spacing, "300");
+    padding-inline: map-get($spacing, "400");
+    font-size: map-get($font-size, "300");
+    font-weight: 500;
+    line-height: 1;
+    color: map-get($secondary, "500");
+    background-color: $white;
+    border: 1px solid map-get($secondary, "500");
+    border-radius: 0.125rem;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: map-get($secondary, "500");
+      color: $white;
+    }
+
+    &:active {
+      border-color: map-get($secondary, "600");
+      background-color: map-get($secondary, "600");
+      color: $white;
+    }
+  }
+
+  .pages--wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: map-get($spacing, "600");
+  }
+
+  .pages--link {
+    font-size: map-get($font-size, "300");
+    line-height: 1;
+    font-weight: 500;
+    color: map-get($neutrals, "400");
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: map-get($secondary, "500");
+    }
+  }
+</style>

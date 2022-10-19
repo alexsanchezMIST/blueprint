@@ -4,9 +4,10 @@ import Section from "../../components/Section.astro";
 import Container from "../../components/Container.astro";
 import Article from "../../components/Article.astro";
 import ShareButtons from "../../components/ShareButtons.astro";
+import PostCard from "../../components/PostCard.astro";
 import CTA from "../../components/CTA.astro";
 
-import { getAllPosts, getPost } from "../../lib/queries.js";
+import { getAllPosts, getPost, getRelatedPosts } from "../../lib/queries.js";
 
 export async function getStaticPaths() {
   const posts = await getAllPosts();
@@ -19,6 +20,14 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const post = await getPost(slug);
+
+const postCategories = post.categories.nodes.map((post) => {
+  return post.name;
+});
+
+const postCategory = postCategories[0];
+
+const relatedPosts = await getRelatedPosts(postCategory);
 ---
 
 <Layout>
@@ -46,6 +55,24 @@ const post = await getPost(slug);
           <Article set:html={post.content} />
           <ShareButtons slug={slug} />
         </div>
+      </div>
+    </Container>
+  </Section>
+  <Section>
+    <Container>
+      <h2 class="related--posts--heading">Related Posts</h2>
+      <div class="related--posts--wrapper">
+        {relatedPosts.edges.map(
+          (post) =>
+            post.node.featuredImage && (
+              <PostCard
+                src={post.node.featuredImage.node.sourceUrl}
+                href={`/posts/${post.node.slug}`}
+                title={post.node.title}
+                excerpt={`${post.node.excerpt.slice(0, 120)}...`}
+              />
+            )
+        )}
       </div>
     </Container>
   </Section>
@@ -89,5 +116,22 @@ const post = await getPost(slug);
     border-radius: 0.25rem;
     box-shadow: 0 4px 6px -1px rgba($black, 0.1),
       0 2px 4px -2px rgba($black, 0.1);
+  }
+
+  .related--posts--heading {
+    margin-bottom: map-get($spacing, "800");
+    text-align: center;
+  }
+
+  .related--posts--wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, min-content));
+    gap: map-get($spacing, "600");
+
+    @media screen and (min-width: map-get($breakpoints, "md")) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-rows: repeat(1, minmax(0, 1fr));
+    }
   }
 </style>

@@ -28,7 +28,7 @@ const { page } = Astro.props;
         </h1>
         <div class="blog--subheading" set:html={podcastsPage.content}></div>
       </div>
-      <Search />
+      <Search slug="podcasts" />
     </Container>
   </Section>
   <Section>
@@ -41,6 +41,11 @@ const { page } = Astro.props;
         ) : null}
         <div class="pages--wrapper">
           <a href="/posts" class="pages--link">1</a>
+          {page.currentPage !== 1 ? (
+            <a href="#" class="pages--link current">
+              {page.currentPage}
+            </a>
+          ) : null}
           <p>...</p>
           <a href={`/posts/${page.lastPage}/`} class="pages--link"
             >{page.lastPage}
@@ -72,6 +77,11 @@ const { page } = Astro.props;
         ) : null}
         <div class="pages--wrapper">
           <a href="/posts" class="pages--link">1</a>
+          {page.currentPage !== 1 ? (
+            <a href="#" class="pages--link current">
+              {page.currentPage}
+            </a>
+          ) : null}
           <p>...</p>
           <a href={`/posts/${page.lastPage}/`} class="pages--link"
             >{page.lastPage}
@@ -180,6 +190,14 @@ const { page } = Astro.props;
 
     &:hover {
       color: map-get($secondary, "500");
+    }
+
+    &.current {
+      color: map-get($secondary, "500");
+
+      &:hover {
+        color: map-get($secondary, "600");
+      }
     }
   }
 </style>

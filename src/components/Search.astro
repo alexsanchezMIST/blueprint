@@ -1,12 +1,19 @@
 ---
 import { Icon } from "astro-icon";
+
+export interface Props {
+  slug?: string;
+}
+
+const { slug } = Astro.props as Props;
+const pageSlug = `https://morethaneng.com/${slug}/`;
 ---
 
 <form
   role="search"
   method="GET"
-  action="https://admin.morethaneng.com/"
-  class="wp-block-search__no-button wp-block-search search--form is-hidden"
+  action={pageSlug}
+  class="wp-block-search__no-button wp-block-search search--form"
 >
   <label
     for="wp-block-search__input-1"
@@ -26,6 +33,7 @@ import { Icon } from "astro-icon";
       ><Icon pack="heroicons-solid" name="search" />
     </button>
   </div>
+  <input type="hidden" value="post" name="post_type" id="post_type" />
 </form>
 
 <style lang="scss">
@@ -35,7 +43,7 @@ import { Icon } from "astro-icon";
     width: min(100%, 35.625rem);
     height: auto;
     margin-inline: auto;
-    outline: 2px solid rgba(map-get($secondary, "500"), 0.5);
+    outline: 2px solid rgba(map-get($secondary, "500"), 0.85);
     border-radius: 0.125rem;
   }
 

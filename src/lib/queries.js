@@ -155,7 +155,7 @@ export async function getAllPosts() {
                 content
                 excerpt
                 slug
-                categories(first: 2) {
+                categories(first: 1) {
                   nodes {
                     slug
                     name
@@ -209,6 +209,34 @@ export async function getAllPostsBySearch(keyword) {
 }
 
 /******************* 
+GET RELATED POSTS
+********************/
+
+export async function getRelatedPosts(category) {
+  const data = await fetchAPI(`
+    {
+      posts(first: 3, where: {categoryName: "${category}"} ) {
+        edges {
+          node {
+            id
+            title
+            content
+            excerpt
+            slug
+            featuredImage {
+              node {
+                sourceUrl
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+  return data?.posts;
+}
+
+/******************* 
 GET SINGLE POST
 ********************/
 
@@ -218,12 +246,10 @@ export async function getPost(slug) {
           post(id: "${slug}", idType: URI) {
               title
               content
-              categories(first: 3) {
-                edges {
-                  node {
+              categories(first: 1) {
+                  nodes {
                     name
                     slug
-                  }
                 }
               }
               featuredImage {
